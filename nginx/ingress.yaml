@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: a15cc09994be04ba58e39a5097f3a2a5-796552887.us-east-2.elb.amazonaws.com
+    http:
+      paths:
+        - path: /
+          backend:
+            serviceName: wordpress
+            servicePort: 80

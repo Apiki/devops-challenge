@@ -50,3 +50,34 @@ Você também pode usar como **Diferencial**:
 * Será executado os precessos de instalação e configuração de acordo com a orientação da documentação em um servidor interno da Apiki.
 * Será avaliado o processo de automação para criação do ambiente em cloud, tempo de execução e a configuração no server na AWS com os dados fornecidos pelo candidato.
 * Deverar constar pelo menos 2 containers.
+
+---
+
+## Documentação - Resultado
+
+### Pré-requisitos
+
+  - [Helm](https://helm.sh/docs/intro/install/)
+  - [Docker](https://www.docker.com/)
+  - [Cluster Kubernetes](https://kubernetes.io/)
+  - [RDS AWS](https://aws.amazon.com/pt/rds/)
+
+---
+
+## Database
+
+1. O projeto utiliza o serviço de banco de dados Amazon RDS. 
+2. É necessário criar uma instância e salvar as credenciais de acesso: master username, master password e o endpoint. Essas informações serão utilizadas depois.
+
+---
+
+## Criar cluster
+
+1. 
+
+
+
+
+## Implantação balanceador de carga com Ingress Nginx
+helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+helm install nginx stable/nginx-ingress -f nginx\values.yaml
