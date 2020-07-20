@@ -136,3 +136,15 @@ Depois de implantar o McRouter, recomendo utilizar o plugin W3 Total Cache para 
 1. Se em algum momento você desejar destruir seu cluster, execute:
 
 `kops delete cluster $NAME --yes`
+
+---
+
+## Referências
+
+  - [Mcrouter](https://github.com/helm/charts/tree/master/stable/mcrouter)
+  - [Nginx Ingress](https://hub.kubeapps.com/charts/stable/nginx-ingress)
+  - [Wordpress Image](https://hub.docker.com/_/wordpress/)
+  - [Kops](https://kubernetes.io/docs/setup/production-environment/tools/kops/)
+  - [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+  - [Kubernetes na AWS](https://kubernetes.io/docs/setup/production-environment/turnkey/aws/)
+  - [Helm](https://helm.sh/docs/intro/)
