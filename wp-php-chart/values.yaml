@@ -5,14 +5,14 @@
 replicaCount: 1
 
 image:
-  repository: wordpress
+  repository: lucasbg0/wordpress
   deployment: wordpress
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: 5.4.2-php7.4-apache
 
 db:
-  host: wordpress.c9nj6ewjaqpn.us-east-2.rds.amazonaws.com
+  host: wordpress-mysql
   name: wordpress
   secretName: db-credentials
 
