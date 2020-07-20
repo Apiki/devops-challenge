@@ -1,0 +1,5 @@
+controller:
+  extraArgs:
+    v: 2
+  proxySetHeaders:
+    X-Forwarded-For: $proxy_add_x_forwarded_for

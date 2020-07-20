@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.image.deployment }}
+  labels:
+    app: {{ .Values.image.deployment }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.image.deployment }}
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.image.deployment }}
+        tier: backend
+    spec:
+      containers:
+        - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: Always
+          name: {{ .Values.image.deployment }}
+          env:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName            
+            - name: WORDPRESS_DB_HOST
+              value: {{ .Values.db.host }}
+            - name: WORDPRESS_DB_NAME
+              value: {{ .Values.db.name }}              
+            - name: WORDPRESS_DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.db.secretName }}
+                  key: username
+            - name: WORDPRESS_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.db.secretName }}
+                  key: password                   
+          ports:
+            - containerPort: {{ .Values.service.port }}
+              name: {{ .Values.image.deployment }}
+          volumeMounts:
+            - name: wordpress-persistent-storage
+              mountPath: /var/www/html                       
+      volumes:
+        - name: wordpress-persistent-storage
+          persistentVolumeClaim:
+            claimName: wp-pv-claim          
