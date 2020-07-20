@@ -1,0 +1,46 @@
+version: '2'
+ 
+services:
+    reverseproxy:
+        container_name: reverseproxy
+        image: nginx:alpine
+        ports:
+            - 80:80
+            - 8080:8080
+        restart: always
+        volumes:
+          - ./nginx.conf:/etc/nginx/nginx.conf
+ 
+    db:
+     image: mysql:5.7
+     container_name: db
+     ports:
+       - "3336:3306"
+     volumes:
+       - ./db_data:/var/lib/mysql
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: somewordpress
+       MYSQL_DATABASE: wordpress
+       MYSQL_USER: wordpress
+       MYSQL_PASSWORD: wordpress
+
+    wordpress:
+      depends_on:
+        - db
+        - reverseproxy
+      image: wordpress:5.4.2-php7.2-apache
+      container_name: wordpress
+      restart: always
+      environment:
+        WORDPRESS_DB_HOST: db
+        WORDPRESS_DB_USER: wordpress
+        WORDPRESS_DB_PASSWORD: wordpress
+        WORDPRESS_DB_NAME: wordpress
+
+    apache:
+        container_name: apache
+        depends_on:
+            - reverseproxy
+        image: httpd:alpine
+        restart: always

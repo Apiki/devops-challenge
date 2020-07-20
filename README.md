@@ -1,52 +1,45 @@
-# Desafio DevOps Apiki.
+Instalação do Ambiente usado para o Teste
+==========================================
 
-Objetivo é criar um processo automatizado para construção de um servidor web para [WordPress](https://wordpress.org/) em sua última versão.
+Para esse exercicio foi usado CentOS Linux 8
 
-O candidato deve seguir os seguintes **Requisitos**;
+### Disabilitar SELinux
 
-  - O projeto dever ser configurado na [AWS](https://aws.amazon.com/free/), crie uma conta Free.
-  - A máquina configurada deverar ter às portas 80, 443 e 22 abertas.
-  - Uso de Shell Script **Linux**.
-  - [Docker](https://www.docker.com/) 
+Mude selinux para "disabled"
+    vim /etc/selinux/config
 
-### Arquitertura!
+Salve o arquivo e reinicie o servidor
+```sh
+$ sudo shutdown -r now
+```
+### Script
 
-  - [Nginx](https://www.nginx.com/) configurado como proxy para o Apache.
-  - [Apache](https://www.apache.org/) servidor para o WordPress.
-  - [PHP](https://php.net/) a última versão.
-  - [MySql](https://www.mysql.com/) Versão mínima requirida 5.7.
-  - [WordPress](https://wordpress.org) última versão configurada no servidor Apache.
-  
-  **Modelo conceitual**
+Após a reinicialização, rode o script "script.sh".
+Esse scrip instala:
 
-[![N|Solid](https://apiki.com/wp-content/uploads/2019/05/Screenshot_20190515_174205.png)](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
+- Docker
+- Docker Compose
+- Vim
+- Git
 
----
+Após o final do script, clone o repositório.
 
-### Se liga!
+Entre no repositório e digite o comando:
 
-Você também pode usar como **Diferencial**:
-  
-  - [Docker Compose](https://docs.docker.com/compose/).
-  - [Kubernetes](https://kubernetes.io/).
-  - [Ansible](https://www.ansible.com/).
-  - [RDS AWS](https://aws.amazon.com/pt/rds/).
-  - Outras tecnologias para somar no projeto.  
+```sh
+$ docker-compose up -d
+Creating network "devops-challenge_default" with the default driver
+Creating db           ... done
+Creating reverseproxy ... done
+Creating wordpress    ... done
+Creating apache       ... done
+```
 
----
+Esse comando cria:
+- Proxy Reverso com Nginx
+- Banco de dados mysql:5.7
+- Apache + PHP 7.2 + Wordpress
+- Apache
 
-### Entrega
-
-1. Efetue o fork deste repositório e crie um branch com o seu nome e sobrenome. (exemplo: fulano-dasilva)
-2. Após finalizar o desafio, crie um Pull Request.
-3. Aguarde algum contribuidor realizar o code review.
-4. Deverá conter a documentação para instalação e configuração README.md.
-5. Enviar para o email wphost@apiki.com os dados de acesso SSH com permissão root, da máquina configurada na AWS.
-
----
-
-### Validação
-
-* Será executado os precessos de instalação e configuração de acordo com a orientação da documentação em um servidor interno da Apiki.
-* Será avaliado o processo de automação para criação do ambiente em cloud, tempo de execução e a configuração no server na AWS com os dados fornecidos pelo candidato.
-* Deverar constar pelo menos 2 containers.
+Apache + PHP 7.2 + Wordpress Acessivel pela porta padrão (80)
+Apache de Exemplo acessivel pela porta 8080.
