@@ -36,20 +36,20 @@ Esse projeto tem como objetivo rodar uma aplicação Wordpress em um cluster Kub
   4. Instale o kops e o kubectl no CI host. Siga as instruções [aqui](https://github.com/kubernetes/kops/blob/master/docs/install.md).
   5. Configure um par de chaves ssh para usar com o cluster
   6. Crie as seguintes variáveis pelo terminal
-    1. Como não estamos usando DNS pré-configurado, usaremos o sufixo “.k8s.local”. De acordo com a documentação do k8s, se o nome DNS terminar em .k8s.local, o cluster usará o DNS hospedado interno.
-    
+     * Como não estamos usando DNS pré-configurado, usaremos o sufixo “.k8s.local”. De acordo com a documentação do k8s, se o nome DNS terminar em .k8s.local, o cluster usará o DNS hospedado interno.
+     
     `export NAME=<nome_do_cluster>.k8s.local`
-
-    2. Crie um bucket S3 para armazenar sua configuração de cluster. É recomendável ativar o controle de versão no bucket S3. Não precisamos passar isso para os comandos do KOPS. Ele detecta automaticamente pela ferramenta kops como uma variável env.
-
+     
+     * Crie um bucket S3 para armazenar sua configuração de cluster. É recomendável ativar o controle de versão no bucket S3. Não precisamos passar isso para os comandos do KOPS. Ele detecta automaticamente pela ferramenta kops como uma variável env.
+     
     `export KOPS_STATE_STORE=s3://<nome_do_seu_bucket_aqui>`
-
-    3. Defina a mesma região utilizada na instância CI host. 
-    
+     
+     * Defina a mesma região utilizada na instância CI host. 
+     
     `export REGION=us-east-2`
-
-    4. É recomendável configurar essas variáveis no arquivo `/etc/profiles`. As variáveis definidas neste arquivo são carregadas sempre que um shell de login do bash é iniciado. Ao declarar variáveis de ambiente neste arquivo, você precisa usar o comando export também. Igual nos exemplos anteriores.
-
+     
+     * É recomendável configurar essas variáveis no arquivo `/etc/profiles`. As variáveis definidas neste arquivo são carregadas sempre que um shell de login do bash é iniciado. Ao declarar variáveis de ambiente neste arquivo, você precisa usar o comando export também. Igual nos exemplos anteriores.
+     
     `sudo nano /etc/profiles`
   
   7. Instale a CLI da AWS:
@@ -62,7 +62,7 @@ Esse projeto tem como objetivo rodar uma aplicação Wordpress em um cluster Kub
   `kops create cluster $NAME --zones us-east-2c --authorization RBAC --master-size t2.micro --master-volume-size 10 --node-size t2.medium --node-volume-size 10 --yes`
 
   9. Aguarde a inicialização do cluster.
-    1. A execução do comando 'kops validate cluster' nos dirá qual é o estado atual da instalação. Se você vir "não é possível obter nós" inicialmente, apenas seja paciente, pois o cluster não pode relatar até que alguns serviços básicos estejam em funcionamento.
+     * A execução do comando 'kops validate cluster' nos dirá qual é o estado atual da instalação. Se você vir "não é possível obter nós" inicialmente, apenas seja paciente, pois o cluster não pode relatar até que alguns serviços básicos estejam em funcionamento.
 
     `time until kops validate cluster; do sleep 15 ; done`
     
@@ -71,13 +71,13 @@ Esse projeto tem como objetivo rodar uma aplicação Wordpress em um cluster Kub
   `kubectl get nodes`
 
   11. (Opcional) Se você deseja usar o kubectl e o helm na sua máquina local. Siga esses passos:
-    1. Execute o seguinte comando no CI host:
+     * Execute o seguinte comando no CI host:
   
-    `kops export kubecfg`
+     `kops export kubecfg`
 
-    2. Copie o conteúdo do arquivo `~/.kube/config` para o mesmo local no sistema local.
+     * Copie o conteúdo do arquivo `~/.kube/config` para o mesmo local no sistema local.
 
-    3. Com isso você poderá orquestrar o seu cluster através da sua máquina local, ao invés de ter que entrar via ssh no CI host.
+     * Com isso você poderá orquestrar o seu cluster através da sua máquina local, ao invés de ter que entrar via ssh no CI host.
 
 
 ---
