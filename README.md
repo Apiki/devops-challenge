@@ -89,6 +89,12 @@ Depois de criar o cluster, você já pode criar todas as implantações necessá
 
 
 ### Implantação Wordpress e MySQL
+Antes da criação dos containers principais, e obrigatório a criação de um secret para o usuário e senha do banco de dados.
+
+Crie a chave secreta db-credentiais usando o nome e a senha do usuário do banco de dados de sua escolha:
+
+`kubectl create secret generic credenciais-db-cloudsql --from-literal=username=<USUARIO_AQUI> --from-literal=password=<SENHA_AQUI>`
+
 Para implantar o Wordpress, Apache e MySQL vai ser necessário usar o Helm Chart que está no diretório `wp-php-chart` desse repositório.
 
 `helm install wp-php-chart wp-phpchart\`
