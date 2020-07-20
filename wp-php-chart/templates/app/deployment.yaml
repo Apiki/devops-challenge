@@ -38,9 +38,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.db.secretName }}
-                  key: password
-            - name: WORDPRESS_DEBUG
-              value: "TRUE"                    
+                  key: password                   
           ports:
             - containerPort: {{ .Values.service.port }}
               name: {{ .Values.image.deployment }}
