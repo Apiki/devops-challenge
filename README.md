@@ -28,7 +28,7 @@ Esse projeto tem como objetivo rodar uma aplicação Wordpress em um cluster Kub
   * AmazonVPCFullAccess
 
   2. Crie uma nova instância para usar como seu CI host. Este nó lidará com o provisionamento e o desmembramento do cluster.
-    1. Essa instância pode ser pequena (t2.micro por exemplo).
+    1. Essa instância (Ubuntu 16.04) pode ser pequena (t2.micro por exemplo).
     2. Ao criá-lo, atribua a função IAM criada na primeira etapa.
     3. Uma vez criada, faça o download das chaves ssh ou adicione a sua própria chave pública do seu computador local na instância.
   
