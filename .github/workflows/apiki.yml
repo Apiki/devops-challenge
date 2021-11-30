@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@claudio-estevam
+      - uses: actions/checkout@v1
       - name: Create .env
         run: echo 'PORT=${{ secrets.PORT }}' > .env
       
