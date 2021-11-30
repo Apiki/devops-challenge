@@ -1,0 +1,17 @@
+name: Desafio DevOps Apiki
+
+on:
+  push:
+    branches: [ claudio-estevam ]
+
+jobs:
+  Build:
+    runs-on: self-hosted
+    
+    steps:
+      - uses: actions/checkout@claudio-estevam
+      - name: Create .env
+        run: echo 'PORT=${{ secrets.PORT }}' > .env
+      
+      - name: Start running Docker
+        run: docker-compose up -d
