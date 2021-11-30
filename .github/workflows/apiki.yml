@@ -16,7 +16,7 @@ jobs:
       - name: Start running Docker
         run: docker-compose up -d
       - name: Deploy to Server
-        uses: ssh-deploy@v2
+        uses: easingthemes/ssh-deploy@main
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
