@@ -1,0 +1,9 @@
+- hosts: wp-latest
+  become: true
+  tasks:
+
+  - name: "Copying docker-compose.yml file..."
+    copy: src=docker-compose.yml dest=/home/ubuntu/docker-compose.yml
+
+  - name: "Starting containers..."
+    command: docker-compose up -d

@@ -1,52 +1,41 @@
-# Desafio DevOps Apiki - Claudiomar Estevam
+# Desafio DevOps Apiki
 
-Objetivo é criar um processo automatizado para construção de um servidor web para [WordPress](https://wordpress.org/) em sua última versão.
+Processo automatizado para construção de um servidor web para WordPress em sua última versão.
 
-O candidato deve seguir os seguintes **Requisitos**;
+1. [Terraform](https://www.terraform.io/) para provisionar:
 
-  - O projeto dever ser configurado na [AWS](https://aws.amazon.com/free/), crie uma conta Free.
-  - A máquina configurada deverar ter às portas 80, 443 e 22 abertas.
-  - Uso de Shell Script **Linux**.
-  - [Docker](https://www.docker.com/) 
+  - Instância EC2 na [AWS](https://aws.amazon.com/free/)
+  - Grupos de segurança para liberar as portas: 22(SSH), 80(HTTP), 443(HTTPS) e 3306(MYSQL).
+  - Shell Script **Linux** para criar o arquivo **init.sh** responsável pela instalação do [Docker](https://www.docker.com/).
 
-### Arquitertura!
 
-  - [Nginx](https://www.nginx.com/) configurado como proxy para o Apache.
-  - [Apache](https://www.apache.org/) servidor para o WordPress.
-  - [PHP](https://php.net/) a última versão.
-  - [MySql](https://www.mysql.com/) Versão mínima requirida 5.7.
-  - [WordPress](https://wordpress.org) última versão configurada no servidor Apache.
+2. [Ansible](https://www.ansible.com/) para instalar as dependências:
   
-  **Modelo conceitual**
+  - Copia o arquivo docker-compose.yml.
+  - Executa os containers.
 
-[![N|Solid](https://apiki.com/wp-content/uploads/2019/05/Screenshot_20190515_174205.png)](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
 
----
 
-### Se liga!
 
-Você também pode usar como **Diferencial**:
-  
-  - [Docker Compose](https://docs.docker.com/compose/).
-  - [Kubernetes](https://kubernetes.io/).
-  - [Ansible](https://www.ansible.com/).
-  - [RDS AWS](https://aws.amazon.com/pt/rds/).
-  - Outras tecnologias para somar no projeto.  
+## Terraform
 
----
+O arquivo **main.tf** e seus auxiliares **vars.tf** (variáveis) e **sgroup.tf** (grupo de segurança da AWS) são responsáveis por criar a instância EC2, com as configurações de acesso necessárias para o projeto.
 
-### Entrega
+Além disso, um scrip **init.sh** é executado durante a inicialização da intância e o responsável por criar uma memória de swap no linux, fazer o update os pacotes e instalar o Docker, Docker-compose e o NGINX.
 
-1. Efetue o fork deste repositório e crie um branch com o seu nome e sobrenome. (exemplo: fulano-dasilva)
-2. Após finalizar o desafio, crie um Pull Request.
-3. Aguarde algum contribuidor realizar o code review.
-4. Deverá conter a documentação para instalação e configuração README.md.
-5. Enviar para o email wphost@apiki.com os dados de acesso SSH com permissão root, da máquina configurada na AWS.
+Comando:
 
----
+```bash
+terraform apply
+```
 
-### Validação
 
-* Será executado os precessos de instalação e configuração de acordo com a orientação da documentação em um servidor interno da Apiki.
-* Será avaliado o processo de automação para criação do ambiente em cloud, tempo de execução e a configuração no server na AWS com os dados fornecidos pelo candidato.
-* Deverar constar pelo menos 2 containers.
+## Ansible
+
+O arquivo **wpapiki.yml** contém as instruções para copiar e executar o arquivo **docker-compose.yml**
+
+Comando:
+
+```bash
+ansible-playbook -i ansible/hosts ansible/wpapiki.yml -u ubuntu --private-key apiki-devops-challenge.pem
+```
