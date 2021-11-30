@@ -6,7 +6,7 @@ services:
     image: wordpress:latest
     restart: always
     ports:
-      - 8080:80
+      - "${PORT:-8080}:80"
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: apiki
