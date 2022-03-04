@@ -3,3 +3,5 @@ credentials
 **/.terraform/*
 *.tfstate
 *.tfstate.*
+ansible/inventory
+enviroment.env
