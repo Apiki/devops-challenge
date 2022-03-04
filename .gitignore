@@ -1,0 +1,5 @@
+keys/*
+credentials
+**/.terraform/*
+*.tfstate
+*.tfstate.*
