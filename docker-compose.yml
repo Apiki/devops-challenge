@@ -1,0 +1,32 @@
+
+version: '2'
+
+services:
+    theproxy:
+        container_name: nginx-proxy
+        image: nginx:alpine
+        ports:
+            - 80:80
+            - 8080:8080
+        restart: always
+        volumes:
+          - ./nginx.conf:/etc/nginx/nginx.conf
+
+    thepress:
+      depends_on:
+        - theproxy
+      image: wordpress:5.4.2-php7.2-apache
+      container_name: wordpress
+      restart: always
+      environment:
+        WORDPRESS_DB_HOST: ${DB_HOST}
+        WORDPRESS_DB_USER: admin
+        WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+        WORDPRESS_DB_NAME: apikirds
+# Dados do RDS mandados no arquivo .env por e-mail
+    theche:
+        container_name: apache
+        depends_on:
+            - theproxy
+        image: httpd:alpine
+        restart: always
