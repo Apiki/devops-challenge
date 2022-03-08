@@ -5,16 +5,16 @@ Objetivo é criar um processo automatizado para construção de um servidor web 
 O candidato deve seguir os seguintes **Requisitos**;
 
   - O projeto dever ser configurado na [AWS](https://aws.amazon.com/free/), crie uma conta Free.
-  - A máquina configurada deverar ter às portas 80, 443 e 22 abertas.
+  - A máquina configurada deverar ter as portas 80, 443 e 22 abertas.
   - Uso de Shell Script **Linux**.
   - [Docker](https://www.docker.com/) 
 
-### Arquitertura!
+### Arquitetura!
 
   - [Nginx](https://www.nginx.com/) configurado como proxy para o Apache.
   - [Apache](https://www.apache.org/) servidor para o WordPress.
   - [PHP](https://php.net/) a última versão.
-  - [MySql](https://www.mysql.com/) Versão mínima requirida 5.7.
+  - [MySql](https://www.mysql.com/) versão mínima requirida 5.7.
   - [WordPress](https://wordpress.org) última versão configurada no servidor Apache.
   
   **Modelo conceitual**
@@ -41,12 +41,12 @@ Você também pode usar como **Diferencial**:
 2. Após finalizar o desafio, crie um Pull Request.
 3. Aguarde algum contribuidor realizar o code review.
 4. Deverá conter a documentação para instalação e configuração README.md.
-5. Enviar para o email wphost@apiki.com os dados de acesso SSH com permissão root, da máquina configurada na AWS.
+5. Enviar para o email wphost@apiki.com os dados de acesso SSH com permissão root da máquina configurada na AWS.
 
 ---
 
 ### Validação
 
-* Será executado os precessos de instalação e configuração de acordo com a orientação da documentação em um servidor interno da Apiki.
+* Serão executados os processos de instalação e configuração, de acordo com a orientação da documentação, em um servidor interno da Apiki.
 * Será avaliado o processo de automação para criação do ambiente em cloud, tempo de execução e a configuração no server na AWS com os dados fornecidos pelo candidato.
-* Deverar constar pelo menos 2 containers.
+* Deverá conter pelo menos 2 containers.
