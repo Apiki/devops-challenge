@@ -37,7 +37,7 @@ Isso é tudo. Aguarde a instalação.✨
  ## Observações
 
 Como este é um projeto rápido para avaliação, não foram levadas em consideração questões de segurança e outros pontos, como por exemplo: 
-- Poderíamos criar senhas randômicas, poderíamos criar automaticamente, usando lambda e Cloudflare API, um subdominio de desafio.site para o novo servidor (nome que pode ser entrado manualmente, e assim já criar pastas para ele no ESF), etc.
+- Poderíamos criar senhas randômicas, poderíamos criar automaticamente, usando lambda e Cloudflare API, um subdominio de desafio.site para o novo servidor (nome que pode ser entrado manualmente, e assim já criar pastas para ele no EFS), etc.
 
 Não utilizei RDS nem EFS para que o projeto fosse mais facilmente reproduzido no servidor interno Apiki. Mas em um projeto desses para produção, eu faço um pouco diferente:
  - Crio imagens customizadas com docker instalado e já com EFS no fstab, montado. Tudo o que preciso já está naquela imagem.  
