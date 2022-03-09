@@ -44,7 +44,7 @@ Não utilizei RDS nem EFS para que o projeto fosse mais facilmente reproduzido n
  - Uso RDS ou um cluster master+slave ou Galera como db.
 
 
-Enfim, esse é um projeto feito em pouco tempo. Não está perfeito, mas espero que sirva para avaliação.
+Enfim, este é um projeto feito em pouco tempo. Não está perfeito, mas espero que sirva para avaliação.
 
 
 ---
