@@ -29,7 +29,7 @@ Isso é tudo. Aguarde a instalação.✨
 
 - Criei um bucket S3 com o nome desafio.site e o configurei para site estático, ficando com o endereço web desafio.site.s3-website-us-east-1.amazonaws.com. Poderia utilizar este domínio, mas resolvi ir mais em frente, para poder demonstrar um pouco do meu conhecimento em domínios e DNS
 - Registrei o domínio [desafio.site](https://desafio.site)
-- Criei um registro CNAME apontando [desafio.site](https://desafio.site) para desafio.site.s3-website-us-east-1.amazonaws.com
+- Criei um registro CNAME no DNS apontando [desafio.site](https://desafio.site) para desafio.site.s3-website-us-east-1.amazonaws.com
 - Escrevi o script de automatização init.sh e coloquei no website
 - Criei arquivo robots.txt para não permitir que fosse indexado
 
