@@ -1,52 +1,31 @@
-# Desafio DevOps Apiki.
+# Desafio DevOps Apiki - Jonathan Barbosa Farias.
 
-Objetivo é criar um processo automatizado para construção de um servidor web para [WordPress](https://wordpress.org/) em sua última versão.
+O Objetivo é criar um processo automatizado para construção de um servidor web para [WordPress](https://wordpress.org/) em sua última versão.
 
-O candidato deve seguir os seguintes **Requisitos**;
+### Ferramentas Utilizadas
 
-  - O projeto dever ser configurado na [AWS](https://aws.amazon.com/free/), crie uma conta Free.
-  - A máquina configurada deverar ter às portas 80, 443 e 22 abertas.
-  - Uso de Shell Script **Linux**.
-  - [Docker](https://www.docker.com/) 
-
-### Arquitertura!
-
-  - [Nginx](https://www.nginx.com/) configurado como proxy para o Apache.
-  - [Apache](https://www.apache.org/) servidor para o WordPress.
-  - [PHP](https://php.net/) a última versão.
-  - [MySql](https://www.mysql.com/) Versão mínima requirida 5.7.
-  - [WordPress](https://wordpress.org) última versão configurada no servidor Apache.
-  
-  **Modelo conceitual**
-
-[![N|Solid](https://apiki.com/wp-content/uploads/2019/05/Screenshot_20190515_174205.png)](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
-
----
-
-### Se liga!
-
-Você também pode usar como **Diferencial**:
-  
   - [Docker Compose](https://docs.docker.com/compose/).
-  - [Kubernetes](https://kubernetes.io/).
-  - [Ansible](https://www.ansible.com/).
+  - [Terraform](https://www.terraform.io/).
   - [RDS AWS](https://aws.amazon.com/pt/rds/).
-  - Outras tecnologias para somar no projeto.  
+  - [EC2 AWS](https://aws.amazon.com/pt/ec2/).
+  - [Nginx](https://nginx.org/en/)
 
----
+Informações;
 
-### Entrega
+  - A chave de acesso foi enviada pelo email, junto com as instruções de acesso ao ec2;
+  - A instância ec2 foi configurada para ter as portas 80, 443 e 22 abertas;
+  - No GitHub se fará presente um arquivo docker-compose.yml, mas ele só servirá para testes, o docker-compose utilizado está dentro da pasta templates;
+  - Todas as variáveis de ambiente estaram no Terraform, no arquivo variables (que será enviado por email);
+  - O terraform irá configurar a instância e o RDS, além de instalar o docker, docker-compose e também inicia-los;
+  
+Execução;
 
-1. Efetue o fork deste repositório e crie um branch com o seu nome e sobrenome. (exemplo: fulano-dasilva)
-2. Após finalizar o desafio, crie um Pull Request.
-3. Aguarde algum contribuidor realizar o code review.
-4. Deverá conter a documentação para instalação e configuração README.md.
-5. Enviar para o email wphost@apiki.com os dados de acesso SSH com permissão root, da máquina configurada na AWS.
-
----
-
-### Validação
-
-* Será executado os precessos de instalação e configuração de acordo com a orientação da documentação em um servidor interno da Apiki.
-* Será avaliado o processo de automação para criação do ambiente em cloud, tempo de execução e a configuração no server na AWS com os dados fornecidos pelo candidato.
-* Deverar constar pelo menos 2 containers.
+  - Insira o arquivo variables enviado por email na pasta terraform;
+  - Insira as variáveis access_key e secret_key da conta da AWS da APIKI no arquivo variables para a execução do Terraform;
+  - Rode os comandos do terraform;
+    - terraform init
+    - terraform apply -auto-approve
+  - Ao final da execução será informado o dns e ip da instância;
+  - O arquivo .pem é gerado na execução do Terraform
+  - Dependendo da instância é necessário esperar um pouco para a conclusão da execução dos comandos;
+  - Os comandos executados na instância podem ser visualizados no arquivo templates/userdata.tpl.

@@ -1,0 +1,52 @@
+version: "3.9"
+services:
+  db:
+    image: mariadb:latest
+    container_name: db_container
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db:/var/lib/mysql
+    restart: always
+    networks: 
+      - apiki-net
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: wordpress-apiki
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: securepswd
+  
+  wp:
+    image: wordpress:5.9.2-php8.1-apache
+    container_name: wp_container
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: securepswd
+      WORDPRESS_DB_NAME: wordpress-apiki
+    depends_on:
+      - db
+    restart: always
+    volumes:
+      - ./wordpress:/var/www/html
+    networks:
+      - apiki-net
+
+  nginx:
+    depends_on:
+      - db
+      - wp
+    image: nginx:1.20-alpine
+    container_name: nginx_container
+    restart: always
+    #command: ["nginx", "-g", "daemon off;"]
+    command: "/bin/sh -c 'nginx -s reload; nginx -g \"daemon off;\"'"
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d/
+    networks:
+      - apiki-net
+
+networks:
+  apiki-net:
