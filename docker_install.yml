@@ -1,0 +1,42 @@
+---
+- hosts: apiki
+  become: true
+  vars:
+    ansible_ssh_common_args: "-o StrictHostKeyChecking=no"
+    ansible_user: "root"
+
+  tasks:
+
+    - name: Instale o aptitude usando o apt
+      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
+
+    - name: Instale os pacotes de sistema necessários
+      apt: name={{ item }} state=latest update_cache=yes
+      loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools', 'docker-compose']
+
+    - name: Adicionar chave apt do Docker GPG
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Adicionar repositório do Docker
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu bionic stable
+        state: present
+
+    - name: Atualize o apt e instale o docker-ce
+      apt: update_cache=yes name=docker-ce state=latest
+
+    - name: Instalar o módulo Docker para Python
+      pip:
+        name: docker
+    
+    - name: Enviando arquivos para o servidor
+      synchronize:
+        src: "./"
+        dest: /var/www/
+    
+    - name: Rodando docker-compose
+      shell: "sudo docker-compose up -d"
+      args:
+        chdir: /var/www/
