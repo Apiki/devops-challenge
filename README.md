@@ -11,7 +11,8 @@
 9. `cd /etc/nginx/sites-enabled`
 10. `> default`
 11. `vim default`
-12. ```server {
+12. 
+```server {
     server_name 18.230.130.125;
     listen 80;
     location / {
@@ -22,5 +23,6 @@
         proxy_set_header X-Forwarded-Proto $scheme;
     }
     client_max_body_size 200M;
-}```
-13. 
+}
+```
+
