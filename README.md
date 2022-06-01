@@ -25,4 +25,16 @@
     client_max_body_size 200M;
 }
 ```
-
+13. `/etc/init.d/nginx restart`
+14. Observei que as variáveis de ambiente passadas na criação do conteiner do wordpress não funcionaram pois não alteraram o wp-config.php, então...
+15. `passwd admin` (senha: myrocks26)
+16. `vim /etc/ssh/sshd_config`
+17. Alterar PasswordAuthentication no para yes
+18. `/etc/init.d/ssh restart`
+19. `docker exec -ti wordpress bash`
+20. `apt update && apt -y install ssh`
+21. `scp -C wp-config.php admin@172.17.0.1:.`
+22. `exit`
+23. `mv /home/admin/wp-config.php /root`
+24. `docker rm -f wordpress`
+25. `docker run --name wordpress -p 8080:80 -v /root/wp-config.php:/var/www/html/wp-config.php -d wordpress:6-php8.1-apache`
