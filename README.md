@@ -7,11 +7,13 @@
 5. `apt update`
 6. `apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin`
 7. `docker run --name mysql -e MYSQL_ROOT_PASSWORD=myrocks26 -d -p 3306:3306 mysql:5.7-debian`
-8. `docker run --name wordpress -p 8080:80 -e WORDPRESS_DB_HOST=172.17.0.2 -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=myrocks26 -e WORDPRESS_DB_NAME=wordpress -d wordpress:6-php8.1-apache`
-9. `cd /etc/nginx/sites-enabled`
-10. `> default`
-11. `vim default`
-12. 
+8. `mysql -uroot -pmyrocks26 -h 172.17.0.2`
+9. `create database wordpress`
+10. `docker run --name wordpress -p 8080:80 -e WORDPRESS_DB_HOST=172.17.0.2 -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=myrocks26 -e WORDPRESS_DB_NAME=wordpress -d wordpress:6-php8.1-apache`
+11. `cd /etc/nginx/sites-enabled`
+12. `> default`
+13. `vim default`
+14. 
 ```server {
     server_name 18.230.130.125;
     listen 80;
@@ -26,15 +28,3 @@
 }
 ```
 13. `/etc/init.d/nginx restart`
-14. Observei que as variáveis de ambiente passadas na criação do conteiner do wordpress não funcionaram pois não alteraram o wp-config.php, então...
-15. `passwd admin` (senha: myrocks26)
-16. `vim /etc/ssh/sshd_config`
-17. Alterar PasswordAuthentication no para yes
-18. `/etc/init.d/ssh restart`
-19. `docker exec -ti wordpress bash`
-20. `apt update && apt -y install ssh`
-21. `scp -C wp-config.php admin@172.17.0.1:.`
-22. `exit`
-23. `mv /home/admin/wp-config.php /root`
-24. `docker rm -f wordpress`
-25. `docker run --name wordpress -p 8080:80 -v /root/wp-config.php:/var/www/html/wp-config.php -d wordpress:6-php8.1-apache`
