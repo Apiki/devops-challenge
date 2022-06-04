@@ -1,0 +1,20 @@
+---
+- name: Update S.O. - Debian/Ubuntu
+  apt:
+    update_cache: yes
+    upgrade: 'yes'
+
+- name: Configura timezone
+  file:
+    src: /usr/share/zoneinfo/America/Sao_Paulo
+    dest: /etc/localtime
+    state: link
+    force: yes
+
+- name: Instala pacotes básicos via apt
+  apt: 
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ packages }}"
+
+...

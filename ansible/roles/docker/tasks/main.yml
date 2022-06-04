@@ -1,0 +1,37 @@
+---
+- name: Remove versões Docker CE antigas - via apt
+  apt:
+    name: "{{ item }}"
+    state: absent
+  loop: "{{ remove_packages }}"
+
+- name: Instala Pre-reqs do Docker CE - via apt
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ packages_pre_req }}"
+
+- name: Adiciona chave do repositório de pacotes apt
+  apt_key:
+    url: "https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg"
+    state: present
+
+- name: Adiciona Repositório
+  apt_repository:
+    repo: "deb https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable"
+    state: present
+
+- name: Instala Docker CE
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ packages_docker }}"
+  notify: restart docker
+
+- name: Força habilitar início automático do Docker em um reboot do S.O.
+  systemd:
+    name: docker
+    state: started
+    enabled: yes
+
+...
