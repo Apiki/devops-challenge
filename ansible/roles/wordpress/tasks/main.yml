@@ -1,5 +1,5 @@
 ---
-- name: Cria diretório base para o docker-compose.yml
+- name: Cria os diretórios necessários
   file: 
     path: "{{ item }}" 
     state: directory 
@@ -8,18 +8,10 @@
     group: "{{ usuario }}"
   loop: "{{ dirs }}"
 
-- name: Copia nginx.conf para o server
+- name: Copia nginx-http.conf para o server
   copy: 
-    src: nginx.conf 
-    dest: "/home/{{ usuario }}/nginx-conf/"
-    owner: "{{ usuario }}"
-    group: "{{ usuario }}"
-    mode: u=rw,g=r,o=r
-
-- name: Copia options-ssl-nginx.conf para o server
-  copy: 
-    src: options-ssl-nginx.conf 
-    dest: "/home/{{ usuario }}/nginx-conf/"
+    src: nginx-http.conf 
+    dest: "/home/{{ usuario }}/nginx-conf/nginx.conf"
     owner: "{{ usuario }}"
     group: "{{ usuario }}"
     mode: u=rw,g=r,o=r
@@ -33,7 +25,7 @@
     mode: 0644
 
 - name: Executa o docker-compose do Wordpress
-  command: docker-compose up -d -f docker-compose.yml
+  command: docker-compose -f docker-compose.yml up -d
   args:
     chdir: "{{ projeto_dir }}"
 
@@ -41,15 +33,31 @@
   wait_for:
     host: "{{ domain }}"
     port: 80
-    timeout: 180
+    timeout: 60
   register: wordpress_up
   failed_when: False
+
+- name: Copia nginx-https.conf para o server
+  copy: 
+    src: nginx-https.conf 
+    dest: "/home/{{ usuario }}/nginx-conf/nginx.conf"
+    owner: "{{ usuario }}"
+    group: "{{ usuario }}"
+    mode: u=rw,g=r,o=r
+  notify: restart proxy
+
+- name: Copia options-ssl-nginx.conf para o server
+  copy: 
+    src: options-ssl-nginx.conf 
+    dest: "/home/{{ usuario }}/nginx-conf/"
+    owner: "{{ usuario }}"
+    group: "{{ usuario }}"
+    mode: u=rw,g=r,o=r
+  notify: restart proxy
 
 - debug:
     msg: 
       - "Wordpress está no AR!!!"
-      - ""
-      - "IP público da instância: {{ intentory_hostname }}"
-      - "Acessível na URL: https://{{ domain }}"
+      - "Disponível em https://{{ domain }}/"
   when: wordpress_up.state is defined and wordpress_up.state == "started"
 ...
