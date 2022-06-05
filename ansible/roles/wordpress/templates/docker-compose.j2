@@ -1,16 +1,15 @@
-version: '3'
+version: '3.1'
 
 services:
   bd:
     image: mysql:5.7
     container_name: bd
     restart: unless-stopped
-    env_file: .env
     environment:
-      - MYSQL_ROOT_PASSWORD="{{ root_password }}"
-      - MYSQL_DATABASE="{{ wp_db_name }}"
-      - MYSQL_USER="{{ wp_db_user }}"
-      - MYSQL_PASSWORD="{{ wp_db_psw }}"
+      MYSQL_DATABASE: {{ wp_db_name }}
+      MYSQL_USER: {{ wp_db_user }}
+      MYSQL_PASSWORD: {{ wp_db_psw }}
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
     volumes:
       - dbdata:/var/lib/mysql
     networks:
@@ -22,12 +21,11 @@ services:
     image: wordpress:{{ container_tag }}
     container_name: wordpress
     restart: unless-stopped
-    env_file: .env
     environment:
-      - WORDPRESS_DB_HOST=bd:3306
-      - WORDPRESS_DB_USER=$MYSQL_USER
-      - WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD
-      - WORDPRESS_DB_NAME=$WORDPRESS_DB_NAME
+      WORDPRESS_DB_HOST: bd
+      WORDPRESS_DB_USER: {{ wp_db_user }}
+      WORDPRESS_DB_PASSWORD: {{ wp_db_psw }}
+      WORDPRESS_DB_NAME: {{ wp_db_name }}
     volumes:
       - wordpress:/var/www/html
     networks:
@@ -53,7 +51,6 @@ services:
       - proxy_reverso
     image: certbot/certbot
     container_name: certbot
-    env_file: .env
     volumes:
       - certbot-etc:/etc/letsencrypt
       - wordpress:/var/www/html

@@ -9,9 +9,9 @@
   become: yes
   hosts: tag_Name_wordpress_server
   roles:
-    #- common
-    #- docker
-    #- docker-compose
+    - common
+    - docker
+    - docker-compose
     - wordpress
 
 ...

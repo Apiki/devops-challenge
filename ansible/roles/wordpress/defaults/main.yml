@@ -3,12 +3,9 @@ usuario: ubuntu
 projeto_dir: /home/{{ usuario }}/wordpress
 domain: devops-challenge-guto.cf
 email: guto-devops@proton.me
-root_password: your_root_password
-wordpress_database_user: your_wordpress_database_user
-wordpress_database_password: your_wordpress_database_password
-wp_db_name: apiki
-wp_db_tb_pre: wp_
-wp_db_user: "{{ wp_db_name }}"
+wp_db_user: admin
 wp_db_psw: change-M3
+db_root_psw: change-M3
+wp_db_name: wordpress
 container_tag: 6.0.0-fpm-alpine
 ...

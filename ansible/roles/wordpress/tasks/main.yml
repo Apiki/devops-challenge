@@ -16,14 +16,6 @@
     group: "{{ usuario }}"
     mode: u=rw,g=r,o=r
 
-- name: Copia .env para o diretório do projeto
-  template:
-    src: .env.j2
-    dest: "{{ projeto_dir }}/.env"
-    owner: "{{ usuario }}"
-    group: "{{ usuario }}"
-    mode: 0400
-
 - name: Copia docker-compose.yml para o diretório do projeto
   template:
     src: docker-compose.j2
