@@ -1,0 +1,87 @@
+version: '3'
+
+services:
+  bd:
+    image: mysql:5.7
+    container_name: bd
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - MYSQL_ROOT_PASSWORD="{{ root_password }}"
+      - MYSQL_DATABASE="{{ wp_db_name }}"
+      - MYSQL_USER="{{ wp_db_user }}"
+      - MYSQL_PASSWORD="{{ wp_db_psw }}"
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - wp
+  
+  wordpress01:
+    depends_on:
+      - bd
+    image: wordpress:{{ container_tag }}
+    container_name: wordpress01
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - WORDPRESS_DB_HOST=bd:3306
+      - WORDPRESS_DB_USER=$MYSQL_USER
+      - WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD
+      - WORDPRESS_DB_NAME=$WORDPRESS_DB_NAME
+    volumes:
+      - wordpress:/var/www/html
+    networks:
+      - wp
+    
+#  wordpress02:
+#    depends_on:
+#      - bd
+#    image: wordpress:{{ container_tag }}
+#    container_name: wordpress02
+#    restart: unless-stopped
+#    env_file: .env
+#    environment:
+#      - WORDPRESS_DB_HOST=bd:3306
+#      - WORDPRESS_DB_USER=$MYSQL_USER
+#      - WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD
+#      - WORDPRESS_DB_NAME=$WORDPRESS_DB_NAME
+#    volumes:
+#      - wordpress:/var/www/html
+#    networks:
+#      - wp
+
+  proxy_reverso:
+    depends_on:
+      - wordpress01
+#      - wordpress02
+    image: nginx:stable-alpine
+    container_name: proxy_reverso
+    restart: unless-stopped
+    ports:
+      - 80:80
+    volumes:
+      - wordpress:/var/www/html
+      - ./nginx-conf:/etc/nginx/conf.d
+      - certbot-etc:/etc/letsencrypt
+    networks:
+      - wp
+  
+  certbot:
+    depends_on:
+      - proxy_reverso
+    image: certbot/certbot
+    container_name: certbot
+    env_file: .env
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - wordpress:/var/www/html
+    command: certonly --webroot --webroot-path=/var/www/html --email {{ email }} --agree-tos --no-eff-email --staging -d {{ domain }} -d www.{{ domain }}
+
+volumes:
+  certbot-etc:
+  wordpress:
+  dbdata:
+
+networks:
+  wp:
+    driver: bridge
