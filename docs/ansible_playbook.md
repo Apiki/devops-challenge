@@ -4,6 +4,15 @@
 
 Após ter configurado o ambiente com uso de virtual env no passo anterior, agora é executar a playbook para instalar e configurar um site com o Wordpress.
 
+**Atenção**: Acrescentar no arquivo ansible/roles/wordpress/defaults/main.yml as variáveis, sobretudo as listadas abaixo:
+
+```python
+wp_db_user: informe_usuario_do_banco_aqui
+wp_db_psw: informe_uma_senha_para_banco_aqui
+db_root_psw: informe_uma_senha_de_root_db_aqui
+```
+Informe antes de executar a playbook, isso para provisionar um ambiente novo.
+
 **Passo a passo:**
 
 1. Após ter configurado o virtualenv, estando dentro diretório ***ansible***, execute a playbook:

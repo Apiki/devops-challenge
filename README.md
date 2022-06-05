@@ -1,6 +1,6 @@
 # Instalação e Configuração de Wordpress
 
-Esse repositório contém arquivos necessários para provisionar infraestrutura na AWS, criando os recursos necessários, instalação de pacotes e instalação e configuração de um Wordpress usando docker.
+Esse repositório contém arquivos necessários para provisionar infraestrutura na AWS, criando os recursos necessários, instalação de pacotes e instalação e configuração de um Wordpress usando docker/docker-compose.
 
 # Sumário
 1. **[Pré-requisitos](docs/prereqs.md)**
