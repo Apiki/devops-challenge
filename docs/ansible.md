@@ -1,3 +1,5 @@
+[Voltar ao Sumário](../README.md) - [Anterior](terraform_apply.md) - [Próximo](ansible_playbook.md)
+
 # Ansible
 
 Foi utilizado o ansible para automatizar a instalação de pacotes e configurações.
@@ -53,3 +55,5 @@ Os comandos devem ser executados dentro do diretório ansible deste repositório
 Deve ser retornando uma série de informações, incluindo as tags e ips, por exemplo, das VMs que estão instanciadas na AWS.
 
 **Obs.:** Deve-se configurar antes dos passos acima, uma Access Key e Secret Key na console da AWS, com as devidas permissões, através do IAM.
+
+[Voltar ao Sumário](../README.md) - [Anterior](terraform_apply.md) - [Próximo](ansible_playbook.md)

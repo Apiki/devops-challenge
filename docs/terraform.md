@@ -1,5 +1,6 @@
-# Terraform (Opcional)
-[Sumário](../README.md) - [Próximo]()
+[Voltar ao Sumário](../README.md) - [Anterior](prereqs.md) - [Próximo](terraform_apply.md)
+
+# Terraform (Leitura Opcional)
 ## 1. Provisionando VM
 
 Para criar a infraestrutura necessária, será utilizado o [Terraform](https://www.terraform.io/).
@@ -82,4 +83,4 @@ Agora ao executar o apply, basta informar o nome do arquivo que foi gerado no pl
 terraform apply nome_do_arquivo_plan_gerado_no_plan
 ```
 
-[Sumário](../README.md) - [Próximo]()
+[Voltar ao Sumário](../README.md) - [Anterior](prereqs.md) - [Próximo](terraform_apply.md)
