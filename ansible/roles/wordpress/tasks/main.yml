@@ -16,6 +16,14 @@
     group: "{{ usuario }}"
     mode: u=rw,g=r,o=r
 
+- name: Copia options-ssl-nginx.conf para o server
+  copy: 
+    src: options-ssl-nginx.conf 
+    dest: "/home/{{ usuario }}/nginx-conf/"
+    owner: "{{ usuario }}"
+    group: "{{ usuario }}"
+    mode: u=rw,g=r,o=r
+
 - name: Copia docker-compose.yml para o diretório do projeto
   template:
     src: docker-compose.j2
