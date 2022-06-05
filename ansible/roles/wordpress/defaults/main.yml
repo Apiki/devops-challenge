@@ -10,5 +10,5 @@ wp_db_name: apiki
 wp_db_tb_pre: wp_
 wp_db_user: "{{ wp_db_name }}"
 wp_db_psw: change-M3
-container_tag: latest
+container_tag: 6.0.0-fpm-alpine
 ...

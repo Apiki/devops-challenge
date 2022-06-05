@@ -16,11 +16,11 @@ services:
     networks:
       - wp
   
-  wordpress01:
+  wordpress:
     depends_on:
       - bd
     image: wordpress:{{ container_tag }}
-    container_name: wordpress01
+    container_name: wordpress
     restart: unless-stopped
     env_file: .env
     environment:
@@ -33,27 +33,9 @@ services:
     networks:
       - wp
     
-#  wordpress02:
-#    depends_on:
-#      - bd
-#    image: wordpress:{{ container_tag }}
-#    container_name: wordpress02
-#    restart: unless-stopped
-#    env_file: .env
-#    environment:
-#      - WORDPRESS_DB_HOST=bd:3306
-#      - WORDPRESS_DB_USER=$MYSQL_USER
-#      - WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD
-#      - WORDPRESS_DB_NAME=$WORDPRESS_DB_NAME
-#    volumes:
-#      - wordpress:/var/www/html
-#    networks:
-#      - wp
-
   proxy_reverso:
     depends_on:
-      - wordpress01
-#      - wordpress02
+      - wordpress
     image: nginx:stable-alpine
     container_name: proxy_reverso
     restart: unless-stopped
@@ -61,7 +43,7 @@ services:
       - 80:80
     volumes:
       - wordpress:/var/www/html
-      - ./nginx-conf:/etc/nginx/conf.d
+      - ../nginx-conf:/etc/nginx/conf.d
       - certbot-etc:/etc/letsencrypt
     networks:
       - wp
