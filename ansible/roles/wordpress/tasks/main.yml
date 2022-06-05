@@ -31,4 +31,25 @@
     owner: "{{ usuario }}"
     group: "{{ usuario }}"
     mode: 0644
+
+- name: Executa o docker-compose do Wordpress
+  command: docker-compose up -d -f docker-compose.yml
+  args:
+    chdir: "{{ projeto_dir }}"
+
+- name: Checando se os containers foram iniciados e o {{ domain }} está acessível
+  wait_for:
+    host: "{{ domain }}"
+    port: 80
+    timeout: 180
+  register: wordpress_up
+  failed_when: False
+
+- debug:
+    msg: 
+      - "Wordpress está no AR!!!"
+      - ""
+      - "IP público da instância: {{ intentory_hostname }}"
+      - "Acessível na URL: https://{{ domain }}"
+  when: wordpress_up.state is defined and wordpress_up.state == "started"
 ...
