@@ -1,0 +1,11 @@
+---
+usuario: ubuntu
+projeto_dir: /home/{{ usuario }}/wordpress
+domain: devops-challenge-guto.cf
+email: guto-devops@proton.me
+wp_db_user: informe_usuario_do_banco_aqui
+wp_db_psw: informe_uma_senha_para_banco_aqui
+db_root_psw: informe_uma_senha_de_root_db_aqui
+wp_db_name: wordpress
+container_tag: 6.0.0-fpm-alpine
+...

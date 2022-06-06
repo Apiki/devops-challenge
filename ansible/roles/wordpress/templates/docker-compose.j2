@@ -1,0 +1,68 @@
+version: '3.1'
+
+services:
+  bd:
+    image: mysql:5.7
+    container_name: bd
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: {{ wp_db_name }}
+      MYSQL_USER: {{ wp_db_user }}
+      MYSQL_PASSWORD: {{ wp_db_psw }}
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - wp
+  
+  wordpress:
+    depends_on:
+      - bd
+    image: wordpress:{{ container_tag }}
+    container_name: wordpress
+    restart: unless-stopped
+    environment:
+      WORDPRESS_DB_HOST: bd
+      WORDPRESS_DB_USER: {{ wp_db_user }}
+      WORDPRESS_DB_PASSWORD: {{ wp_db_psw }}
+      WORDPRESS_DB_NAME: {{ wp_db_name }}
+    volumes:
+      - wordpress:/var/www/html
+    networks:
+      - wp
+    
+  proxy_reverso:
+    depends_on:
+      - wordpress
+    image: nginx:stable-alpine
+    container_name: proxy_reverso
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - wordpress:/var/www/html
+      - ../nginx-conf:/etc/nginx/conf.d
+      - certbot-etc:/etc/letsencrypt
+    networks:
+      - wp
+  
+  certbot:
+    depends_on:
+      - proxy_reverso
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - wordpress:/var/www/html
+    #command: certonly --webroot --webroot-path=/var/www/html --email {{ email }} --agree-tos --no-eff-email --staging -d {{ domain }} -d www.{{ domain }}
+    command: certonly --webroot --webroot-path=/var/www/html --email {{ email }} --agree-tos --no-eff-email --force-renewal -d {{ domain }} -d www.{{ domain }}
+
+volumes:
+  certbot-etc:
+  wordpress:
+  dbdata:
+
+networks:
+  wp:
+    driver: bridge

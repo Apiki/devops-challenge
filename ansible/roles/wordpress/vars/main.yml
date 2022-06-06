@@ -1,0 +1,7 @@
+---
+dirs:
+  - /home/{{ usuario }}/wordpress
+  - /home/{{ usuario }}/nginx-conf
+  - /home/{{ usuario }}/certbot-etc
+
+...

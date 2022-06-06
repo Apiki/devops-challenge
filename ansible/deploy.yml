@@ -1,0 +1,17 @@
+---
+- name: Adiciona host em know hosts - SSH
+  gather_facts: no
+  hosts: all
+  roles:
+    - known-hosts
+
+- name: Instala pré-requisitos
+  become: yes
+  hosts: tag_Name_wordpress_server
+  roles:
+    - common
+    - docker
+    - docker-compose
+    - wordpress
+
+...
