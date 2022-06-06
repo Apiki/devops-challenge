@@ -1,2 +1,221 @@
-Descrição dos comandos utilizados na instalação do WordPress em uma instância EC2.
 
+## Instalação e configuração manual de todo o ambiente na instância Amazon Linux(ami-0022f774911c1d690):
+
+sudo yum update -y && sudo yum install -y mariadb mariadb-server 
+sudo amazon-linux-extras install -y nginx1
+sudo chkconfig nginx on
+sudo chkconfig mariadb on
+sudo amazon-linux-extras enable php7.4
+sudo yum clean metadata
+sudo yum install -y php php-{pear,cgi,common,curl,mbstring,gd,mysqlnd,gettext,bcmath,json,xml,intl,zip,imap}
+sudo systemctl enable httpd
+
+Alterações nas configurações do Apache:
+
+Ajuste no arquivo de configuração do serviço httpd:
+sudo vim /etc/httpd/conf/httpd.conf
+
+User devadm
+Group devgroup
+
+Listen 127.0.0.1:8080
+ServerName apikiwp.joelpinheiro.com:8080
+
+
+sudo vim /etc/httpd/conf.d/apikiwp.conf
+
+<VirtualHost 127.0.0.1:8080>
+   DocumentRoot /home/devadm/public_html   
+    <Directory /home/devadm/public_html>   
+           Options +FollowSymLinks -Indexes
+           AllowOverride All
+           Require all granted
+        </Directory>
+
+   ServerName apikiwp.joelpinheiro.com
+   ServerAlias 54.204.239.122
+   ServerAdmin joelcostapinheiro@gmail.com
+   ErrorLog logs/error_apikiwp.log
+   CustomLog logs/access_apikiwp.log combined
+</VirtualHost>
+
+sudo systemctl restart httpd && sudo systemctl enable nginx
+
+Alterações nas configuração do Nginx:
+
+sudo vim /etc/nginx/conf.d/apikiwp.conf
+
+server {
+
+        root /home/devadm/public_html/;
+        index index.php index.html index.htm;
+        server_name apikiwp.joelpinheiro.com;
+
+        location / {
+        try_files $uri $uri/ /index.php;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Server $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://127.0.0.1:8080;
+        }
+
+        location ~ \.php$ {
+        proxy_set_header X-Real-IP  $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $host:$server_port;
+        proxy_pass http://127.0.0.1:8080;
+
+         }
+
+         location ~ /\.ht {
+                deny all;
+        }
+
+        listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/apikiwp.joelpinheiro.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/apikiwp.joelpinheiro.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+} 
+
+server {
+    if ($host = apikiwp.joelpinheiro.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+        listen 80;
+        server_name apikiwp.joelpinheiro.com;
+    return 404; # managed by Certbot
+
+
+}
+
+sudo systemctl restart nginx
+sudo groupadd devgroup
+sudo useradd -d /home/devadm -G devgroup -s /sbin/nologin devadm
+sudo passwd devadm
+sudo chgrp -R devgroup /home/devadm
+sudo mkdir /home/devadm/public_html
+sudo cd /home/devadm/public_html/
+sudo chmod 755 /home/devadm/public_html
+sudo mkdir /home/devadm/public_html/tmp
+sudo chown -R devadm.devgroup *
+sudo wget https://wordpress.org/latest.tar.gz
+tar -xzvf latest.tar.gz 
+sudo systemctl start mariadb && sudo systemctl enable mariadb
+/usr/bin/mysql_secure_installation
+sudo mysql -u root -p
+Dados de acesso enviados por email.
+
+Instalação/Configuração do Certificado SSL Let's Encrypt:
+sudo amazon-linux-extras install epel -y
+sudo yum install python-certbot-nginx
+
+create database wpdata;
+grant all privileges on wpdata.* to usrwp@localhost identified by 'senhaenviadaporemail';
+
+
+
+
+## Instalação e configuração utilizando docker-compose na instância Amazon Linux(ami-0022f774911c1d690):
+
+Instalar Docker e Docker Compose:
+
+sudo amazon-linux-extras install docker
+sudo chkconfig docker on
+sudo service docker start
+sudo usermod -a -G docker ec2-user
+sudo yum install -y git
+
+sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+sudo su; chmod +x /usr/local/bin/docker-compose
+
+Instalar Nginx e usar como Proxy Reverso:
+sudo amazon-linux-extras install -y nginx1
+sudo chkconfig nginx on
+sudo systemctl start nginx
+
+sudo vim /etc/nginx/conf.d/apiki.conf
+
+server {
+
+    server_tokens off;
+    server_name apikiwpdkr.joelpinheiro.com;
+
+    location / {
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Server $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://172.20.0.3:80;
+    }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/apikiwpdkr.joelpinheiro.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/apikiwpdkr.joelpinheiro.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+
+server {
+    if ($host = apikiwpdkr.joelpinheiro.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    server_name apikiwpdkr.joelpinheiro.com;
+    return 404; # managed by Certbot
+}
+
+
+Arquivo docker compose segundo a documentação oficial:
+https://docs.docker.com/samples/wordpress/
+OBS: Fiz um ajuste nos environments para que dados sensíveis não fiquem expostos no arquivo.
+
+sudo vim docker-compose.yml
+version: "3.9"
+    
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    env_file:
+     - .env_wp    
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:php8.1-apache
+    volumes:
+      - wordpress_data:/var/www/html
+    ports:
+      - "8000:80"
+    restart: always
+    env_file:
+     - .env_db
+volumes:
+  db_data: {}
+  wordpress_data: {}
+
+
+Dados enviados por email: 
+
+.env_wp
+.env_db
+
+Instalação/configuração Certificado SSL:
+
+sudo amazon-linux-extras install epel -y
+sudo yum install python-certbot-nginx
