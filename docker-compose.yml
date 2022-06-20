@@ -1,0 +1,48 @@
+version: "3.9"
+services:
+    wordpress:
+        container_name: wordpress
+        image: wordpress:php8.1-apache
+        restart: always
+        stdin_open: true
+        tty: true
+        environment:
+            WORDPRESS_DB_HOST: db
+            WORDPRESS_DB_USER: root
+            WORDPRESS_DB_PASSWORD: 12345678
+            WORDPRESS_DB_NAME: wp_devops
+        volumes:
+            - wordpress_data:/var/www/html
+            #- ./wordpress:/var/www/html
+    mysql:
+        container_name: db
+        image:  mysql:5.7
+        restart: always
+        environment:
+          MYSQL_ROOT_PASSWORD: 12345678
+        ports:
+         - "3306:3306"
+        volumes:
+            - db_data:/var/lib/mysql
+    nginx:
+        container_name: nginx
+        image: nginx:latest
+        restart: unless-stopped
+        ports:
+            - 80:80
+            - 443:80
+        volumes:
+            - ./nginx/conf:/etc/nginx/conf.d
+            - ./certbot/conf:/etc/nginx/ssl
+            - ./certbot/data:/var/www/html
+    certbot:
+        container_name: certbot
+        image: certbot/certbot:latest
+        command: certonly --webroot --webroot-path=/var/www/html --email mcleisson@gmail.com --agree-tos --no-eff-email -d localhost -d www.localhost
+        volumes:
+            - ./certbot/conf:/etc/letsencrypt
+            - ./certbot/logs:/var/log/letsencrypt
+            - ./certbot/data:/var/www/html
+volumes:
+    db_data:
+    wordpress_data:
