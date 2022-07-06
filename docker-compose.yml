@@ -1,0 +1,49 @@
+version: "3.9"
+services:
+    wordpress:
+        container_name: wordpress
+        image: wordpress:php8.1-apache
+        restart: always
+        stdin_open: true
+        tty: true
+        environment:
+            WORDPRESS_DB_HOST: mariadb
+            WORDPRESS_DB_USER: apkiuser
+            WORDPRESS_DB_PASSWORD: apkipassword
+            WORDPRESS_DB_NAME: apki
+        volumes:
+            - wordpress_data:/var/www/html
+            - ./wordpress:/var/www/html
+    mariadb:
+        container_name: mariadb
+        image: mariadb
+        restart: always
+        environment:
+            MYSQL_DATABASE: apki
+            MYSQL_USER: apkiuser
+            MYSQL_PASSWORD: apkipassword
+            MYSQL_RANDOM_ROOT_PASSWORD: 'root_pass'
+        volumes:
+            - db_data:/var/lib/mysql
+    nginx:
+        container_name: nginx
+        image: nginx:latest
+        restart: unless-stopped
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            - ./nginx/conf:/etc/nginx/conf.d
+            - ./certbot/conf:/etc/nginx/ssl
+            - ./certbot/data:/var/www/html
+    certbot:
+        container_name: certbot
+        image: certbot/certbot:latest
+        command: certonly --webroot --webroot-path=/var/www/html --email iohan15@hotmail.com --agree-tos --no-eff-email -d ec2-54-191-26-93.us-west-2.compute.amazonaws.com -d www.ec2-54-191-26-93.us-west-2.compute.amazonaws.com
+        volumes:
+            - ./certbot/conf:/etc/letsencrypt
+            - ./certbot/logs:/var/log/letsencrypt
+            - ./certbot/data:/var/www/html
+volumes:
+    db_data:
+    wordpress_data:
