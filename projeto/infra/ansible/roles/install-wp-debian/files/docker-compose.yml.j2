@@ -1,0 +1,59 @@
+version: "3.9"
+services:
+    wordpress:
+        container_name: wordpress
+        image: wordpress:php8.1-apache
+        restart: always
+        stdin_open: true
+        tty: true
+        environment:
+          WORDPRESS_DB_HOST: {{mysql_host}}
+          WORDPRESS_DB_USER: {{mysql_user}}
+          WORDPRESS_DB_PASSWORD: {{mysql_password}}
+          WORDPRESS_DB_NAME: {{mysql_database}}
+        volumes:
+            - /var/www/html:/var/www/html
+        networks: 
+          dev:
+            ipv4_address: 171.28.5.10
+
+    mariadb:
+        container_name: mariadb
+        image: mariadb:10.5.9
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: {{mysql_root_password}}
+        ports:
+          - '3306:3306'    
+        volumes:
+          - db_data:/var/lib/mysql
+        networks: 
+          dev:
+            ipv4_address: 171.28.5.11
+
+    nginx:
+        container_name: nginx
+        image: nginx:latest
+        restart: unless-stopped
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            - ./nginx/conf:/etc/nginx/conf.d
+            - ./nginx/certs/cert:/etc/nginx/ssl
+        networks: 
+          dev:
+            ipv4_address: 171.28.5.12
+
+volumes:
+    db_data:
+
+networks: 
+  dev:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    ipam:
+      driver: default
+      config:
+      - subnet: 171.28.0.0/16

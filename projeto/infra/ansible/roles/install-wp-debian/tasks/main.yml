@@ -1,0 +1,3 @@
+---
+# tasks file for install-wp-debian
+- include_tasks: install-wp-debian.yml
