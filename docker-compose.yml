@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  wordpress:
+    container_name: wordpress
+    image: wordpress:php8.1-apache
+    volumes:
+      - ./wordpress:/var/www/html
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    depends_on:
+      - wordpress
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./nginx/ssl:/etc/nginx/ssl
+      - ./nginx/log:/var/log/nginx
+    ports:
+      - 80:80
+      - 443:443
+    restart: unless-stopped

@@ -2,51 +2,58 @@
 
 Objetivo é criar um processo automatizado para construção de um servidor web para [WordPress](https://wordpress.org/) em sua última versão.
 
-O candidato deve seguir os seguintes **Requisitos**;
+\* Bonus: Utilização do AWS S3 para armazenamento mais econômico de medias do WordPress.
 
-  - O projeto dever ser configurado na [AWS](https://aws.amazon.com/free/), crie uma conta Free.
-  - A máquina configurada deverar ter às portas 80, 443 e 22 abertas.
-  - Uso de Shell Script **Linux**.
-  - [Docker](https://www.docker.com/) 
+## Arquitetura
 
-### Arquitertura!
-
-  - [Nginx](https://www.nginx.com/) configurado como proxy para o Apache.
-  - [Apache](https://www.apache.org/) servidor para o WordPress.
-  - [PHP](https://php.net/) a última versão.
-  - [MySql](https://www.mysql.com/) Versão mínima requirida 5.7.
-  - [WordPress](https://wordpress.org) última versão configurada no servidor Apache.
+  - Banco de dados [AWS RDS](https://aws.amazon.com/pt/rds/) rodando [MySQL](https://www.mysql.com/).
+  - Imagem Docker [Nginx](https://www.nginx.com/) configurado como proxy para image WordPress Apache.
+  - Imagem Docker [WordPress](https://wordpress.org) rodando [Apache](https://www.apache.org/) e [PHP](https://php.net/).
+  - Bucket [AWS S3](https://aws.amazon.com/pt/s3/) e [AWS IAM](https://aws.amazon.com/pt/iam/) para medias do WordPress.
+  - Domínio, DNS, CDN e SSL com [Cloudflare](https://www.cloudflare.com/pt-br/).
   
-  **Modelo conceitual**
+## Requerimentos
 
-[![N|Solid](https://apiki.com/wp-content/uploads/2019/05/Screenshot_20190515_174205.png)](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
-
----
-
-### Se liga!
-
-Você também pode usar como **Diferencial**:
-  
+  - [AWS EC2](https://aws.amazon.com/pt/ec2/).
+  - [AWS RDS](https://aws.amazon.com/pt/rds/). 
+  - [AWS S3](https://aws.amazon.com/pt/s3/).
+  - [Docker](https://www.docker.com/).
   - [Docker Compose](https://docs.docker.com/compose/).
-  - [Kubernetes](https://kubernetes.io/).
-  - [Ansible](https://www.ansible.com/).
-  - [RDS AWS](https://aws.amazon.com/pt/rds/).
-  - Outras tecnologias para somar no projeto.  
+  - [Media Cloud](https://br.wordpress.org/plugins/ilab-media-tools/).
 
----
+## Instalação
 
-### Entrega
+  - Provisionamento de banco de dados MySQL no AWS RDS.
+  - Provisionamento de bucket AWS S3.
+  - Configuração de usuários e políticas AWS IAM para o AWS S3.
+  - Provisionamento de instancia EC2.
+  - Configuração das portas 22, 80 e 443 no grupo de segurança.
+  - Configuração de domínio, DNS, CDN e SSL. 
+  - Instalação do Docker e Docker composer.
+  - Download do `docker-compose.yml`, `.env` e certificado `SSL`.
+  - Configuração do banco de dados no arquivo `.env`.
+  - Provisionamento de containers Docker `docker composer up -d`
+  - Complete a instalação do WordPress e do plugin Media cloud.
 
-1. Efetue o fork deste repositório e crie um branch com o seu nome e sobrenome. (exemplo: fulano-dasilva)
-2. Após finalizar o desafio, crie um Pull Request.
-3. Aguarde algum contribuidor realizar o code review.
-4. Deverá conter a documentação para instalação e configuração README.md.
-5. Enviar para o email wphost@apiki.com os dados de acesso SSH com permissão root, da máquina configurada na AWS.
+\* Observação: os arquivos `.env` e o certificado `SSL` serão enviados por e-mail.
 
----
+## Utilização
 
-### Validação
+Acesse a URL: https://apiki.vitor.guia.nom.br/wp-login.php
+Preencha o usuário e a senha que serão fornecidos por e-mail.
 
-* Será executado os precessos de instalação e configuração de acordo com a orientação da documentação em um servidor interno da Apiki.
-* Será avaliado o processo de automação para criação do ambiente em cloud, tempo de execução e a configuração no server na AWS com os dados fornecidos pelo candidato.
-* Deverar constar pelo menos 2 containers.
+Acesso o servidor com a chave que será fornecida pelo e-mail.
+
+```sh
+$ ssh -i apiki-key.pem admin@3.93.148.249
+```
+
+## Testes para entrega
+
+![Portas abertas](https://apiki-bucket.s3.amazonaws.com/2022/07/portas.png)
+
+![Containers Docker](https://apiki-bucket.s3.amazonaws.com/2022/07/containers.png)
+
+![Resposta SSH](https://apiki-bucket.s3.amazonaws.com/2022/07/ssh.png)
+
+![Resposta HTTP](https://apiki-bucket.s3.amazonaws.com/2022/07/http.png)
