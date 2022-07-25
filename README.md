@@ -40,7 +40,13 @@ Objetivo é criar um processo automatizado para construção de um servidor web 
 ## Utilização
 
 Acesse a URL: https://apiki.vitor.guia.nom.br/wp-login.php
-Preencha o usuário e a senha que serão fornecidos por e-mail
+Preencha o usuário e a senha que serão fornecidos por e-mail.
+
+Acesso o servidor com a chave que será fornecida pelo e-mail.
+
+```sh
+$ ssh -i apiki-key.pem admin@3.93.148.249
+```
 
 ## Testes para entrega
 
