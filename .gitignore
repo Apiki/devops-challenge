@@ -1,0 +1,14 @@
+*.csv
+*.plan
+.terraform
+.terraform/*
+.terraform.lock.hcl
+*.svg
+
+terraform/*.csv
+terraform/*.plan
+terraform/.terraform
+terraform/.terraform/*
+terraform/.terraform.lock.hcl
+terraform/*.svg
+terraform/deploy
