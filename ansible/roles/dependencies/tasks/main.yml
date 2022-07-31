@@ -1,0 +1,8 @@
+---
+- name: 'Instala pacotes de dependencia do sistema operacional'
+  apt:
+    update_cache: yes #atualizando o package list
+    cache_valid_time: 3600 #1 hora
+    name: "{{ package }}"
+    state: latest
+  become: yes
