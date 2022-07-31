@@ -46,7 +46,7 @@ Agora para executar o playbook do Ansible, utilizara o comando:
  "-u" o nome do usuário que executará os comandos no host alvo, ubuntu;
  "--private-key" o caminho e nome da chave privada usada para conexão SSH. Observe que o caminho em seu computador pode ser diferente. Nunca commit essa chave para o git.
  "-i" indica que o inventário será o arquivo ec2.py, módulo que fornece inventário dinâmico para AWS.
- "deploy.yml" nome do arquivo que o comando ansible-playbook irá executar, ou seja, a playbook.
+ "provisioning.yml" nome do arquivo que o comando ansible-playbook irá executar, ou seja, a playbook.
  
  
  # Acesso será feito via SSH, sendo enviado por e-mail com permissionamento Root.
