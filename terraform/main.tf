@@ -14,10 +14,10 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] 
 }
 
-resource "aws_instance" "Apiki-aws" {
+resource "aws_instance" "apiki-aws" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
-  key_name = "felipe-key" 
+  key_name = "apiki-key" 
   subnet_id = var.aws_subnet_public_id
   vpc_security_group_ids = [aws_security_group.permitir_ssh_http.id]
   associate_public_ip_address = true
