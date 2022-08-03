@@ -21,22 +21,6 @@ $ pg --no-default-keyring \
  $ sudo apt-get install terraform
 ```
 
-Utilizar o seguinte comando para inicialização do Terraform:
-
-```
-terraform init
-```
-
-Depois utilizar 
-```
-terraform plan
-```
-
-E após isso subir o terraform com o comando: 
-```
-terraform apply
-```
-
 Agora para executar o playbook do Ansible, utilizara o comando: 
 
 ```
