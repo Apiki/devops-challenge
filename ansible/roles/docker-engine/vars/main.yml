@@ -1,0 +1,22 @@
+---
+remove_packages:
+  - docker
+  - docker-engine
+  - docker-io
+  - containerd 
+  - runc
+
+packages_pre_req:
+  - ca-certificates
+  - curl
+  - gnupg
+  - lsb-release
+  - software-properties-common
+  - apt-transport-https
+
+packages_docker:
+  - docker-ce
+  - docker-ce-cli 
+  - containerd.io 
+  - docker-compose-plugin
+

@@ -1,0 +1,2 @@
+docker_compose_version: "1.26.0"
+docker_compose_path: /usr/local/bin/docker-compose

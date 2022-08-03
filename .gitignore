@@ -1,0 +1,12 @@
+*.csv
+*.plan
+.terraform
+.terraform/*
+.terraform.lock.hcl
+
+terraform/*.csv
+terraform/*.plan
+terraform/.terraform
+terraform/.terraform/*
+terraform/.terraform.lock.hcl
+terraform/provisioning

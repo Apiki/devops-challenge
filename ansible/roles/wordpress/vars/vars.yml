@@ -1,0 +1,9 @@
+---
+wordpress_username: wordpress_user
+wordpress_user_password: 123456
+wordpress_db_name: wordpress_db
+wordpress_installation_dir: '/var/www/wordpress'
+wordpress_db_ip: '172.31.81.12'
+dirs:
+  - /home/{{ usuario }}/wordpress
+  - /home/{{ usuario }}/nginx-conf
