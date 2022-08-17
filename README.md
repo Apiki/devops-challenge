@@ -10,9 +10,9 @@ cd technical_challenge_03
   ./devops/compose/config.sh
   ./devops/compose/build.sh
   ./devops/compose/up.sh
-  ./devops/compose/install.sh -t 'My Blog' -u user -p password -e user@email.com
-  # browser: http://localhost:8000
   ./devops/compose/exec.sh app bash
+    ./devops/wordpress/setup.sh -t 'My Blog' -u user -p password -e user@email.com
+    # browser: http://localhost
     wpscan --url localhost
     exit
   ./devops/compose/down.sh

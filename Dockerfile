@@ -36,15 +36,9 @@ WORKDIR /home/user
 RUN sudo chown user:user -R /usr/src/wordpress && \
   sudo chown user:user -R /var/www/html
 
-RUN sudo apt install ruby-dev -y && \
+RUN sudo apt install -y ruby-dev && \
   sudo gem install wpscan
-
-RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
-  php wp-cli.phar --info && \
-  chmod +x wp-cli.phar && \
-  mv wp-cli.phar /usr/local/bin/wp
 
 RUN locale && \
   php -v && \
-  wpscan --version && \
-  wp --version
+  wpscan --version

@@ -10,14 +10,14 @@ services:
       - mysql
     working_dir: /var/www/html
     environment:
-      WORDPRESS_DB_HOST: dockerhost:8001
+      WORDPRESS_DB_HOST: dockerhost
       WORDPRESS_DB_USER: user
       WORDPRESS_DB_PASSWORD: password
       WORDPRESS_DB_NAME: technical_challenge_03_development
     extra_hosts:
       - dockerhost:host-gateway
     ports:
-      - 8000:80
+      - 80:80
     tty: true
     volumes:
       - app_local:/usr/local
@@ -35,7 +35,7 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     ports:
-      - 8001:3306
+      - 3306:3306
 volumes:
   app_local:
   mysql_data:
