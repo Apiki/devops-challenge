@@ -24,6 +24,7 @@ sudo chmod +x usr/local/bin/docker-compose
 
 # Configuration wordpress
 
+mkdir wordpress
 cd ~/wordpress/
 
 docker-compose up -d
