@@ -14,4 +14,5 @@ cd technical_challenge_03
     php -v
     exit
   ./devops/compose/down.sh
+  ./devops/compose/delete.sh
 ```
