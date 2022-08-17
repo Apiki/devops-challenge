@@ -33,25 +33,18 @@ RUN getent passwd '1000' | cut -d: -f1 | { read username; [ -z "$username" ] && 
 USER user
 WORKDIR /home/user
 
-# ARG ARG_NODE_VERSION
-# RUN wget -nv "https://nodejs.org/dist/v${ARG_NODE_VERSION}/node-v${ARG_NODE_VERSION}-linux-x64.tar.gz" && \
-#   tar -xf "node-v${ARG_NODE_VERSION}-linux-x64.tar.gz" --directory '/usr/local' --strip-components '1' && \
-#   rm -rf "node-v${ARG_NODE_VERSION}-linux-x64.tar.gz" && \
-#   npm install -g yarn
-
-# RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
-#   php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
-#   php composer-setup.php --install-dir='/usr/local/bin' --filename='composer' && \
-#   php -r "unlink('composer-setup.php');" && \
-#   rm -rf composer-setup.php && \
-#   echo 'export PATH="$PATH:$HOME/.composer/vendor/bin"' >> ~/.bashrc
-
 RUN sudo chown user:user -R /usr/src/wordpress && \
   sudo chown user:user -R /var/www/html
 
+RUN sudo apt install ruby-dev -y && \
+  sudo gem install wpscan
+
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+  php wp-cli.phar --info && \
+  chmod +x wp-cli.phar && \
+  mv wp-cli.phar /usr/local/bin/wp
+
 RUN locale && \
-  php -v
-  # echo "node: `node -v`" && \
-  # echo "npm: `npm -v`" && \
-  # echo "yarn: `yarn -v`" && \
-  # composer --version
+  php -v && \
+  wpscan --version && \
+  wp --version
