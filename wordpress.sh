@@ -24,7 +24,8 @@ sudo chmod +x usr/local/bin/docker-compose
 
 # Configuration wordpress
 
-cd ~/myaplicationaws/aplication
+aws s3 cp s3://myaplicationwas/aplication/  my_copied_aplication
+cd ~/my_copied_aplication
 
 docker-compose up -d
 docker container ls
