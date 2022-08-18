@@ -24,8 +24,7 @@ sudo chmod +x usr/local/bin/docker-compose
 
 # Configuration wordpress
 
-mkdir wordpress
-cd ~/wordpress/
+cd ~/myaplicationaws/aplication
 
 docker-compose up -d
 docker container ls
