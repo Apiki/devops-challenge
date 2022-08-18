@@ -1,7 +1,5 @@
 name: Deploy
 
-#on: [push, pull_request]
-
 jobs:
   deploy:
     name: "Deploy to server"
