@@ -1,0 +1,37 @@
+name: Deploy
+
+on: push
+
+jobs:
+  deploy:
+    name: "Deploy to server"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/server.key
+          chmod 600 ~/.ssh/server.key
+          cat >>~/.ssh/config <<END
+          Host server
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/server.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USER: ${{ secrets.SERVER_SSH_USER }}
+          SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          SSH_HOST: ${{ secrets.SERVER_SSH_HOST }}
+
+      - name: Download
+        run: ssh server 'rm -rf devops-challenge/ && git clone -b Marcelo-Michels https://github.com/cellodev/devops-challenge.git'
+
+      - name: Dependecies-1
+        run: ssh server 'cd devops-challenge && chmod +x configure-server.sh && ./configure-server.sh'
+
+      - name: Server-Down
+        run: ssh server 'cd devops-challenge && sudo docker-compose down'
+
+      - name: Server-Up
+        run: ssh server 'cd devops-challenge && sudo docker-compose up -d --build'
