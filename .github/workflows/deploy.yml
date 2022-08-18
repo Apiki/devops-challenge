@@ -26,6 +26,9 @@ jobs:
 
       - name: Test
         run: ssh server 'ls'
+      
+      - name: Test2
+        run: ls -la
 
       #- name: Check out the source
       #  run: ssh server 'cd my-application && git fetch && git reset --hard origin/master'
