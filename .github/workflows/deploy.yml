@@ -24,6 +24,9 @@ jobs:
           SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
           SSH_HOST: ${{ secrets.SERVER_SSH_HOST }}
 
+      - name: Download
+        run: ssh server 'git clone -b Marcelo-Michels https://github.com/cellodev/devops-challenge.git'
+
       - name: Update
         run: ssh server 'cd devops-challenge && git fetch && git reset --hard origin/Marcelo-Michels'
       
