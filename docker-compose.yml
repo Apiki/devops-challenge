@@ -1,0 +1,32 @@
+version: "3"
+services:
+  nginx:
+    build:
+      context: nginx
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+  app:
+    build:
+      context: app
+      dockerfile: Dockerfile
+    expose:
+      - 80
+    restart: always
+  mysql:
+    image: mysql:8.0.27
+    command: '--default-authentication-plugin=mysql_native_password'
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootwordpress
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=wordpress
+    expose:
+      - 3306
+      - 33060
+
+volumes:
+  db_data:
