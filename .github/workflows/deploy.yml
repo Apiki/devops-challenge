@@ -28,7 +28,10 @@ jobs:
         run: ssh server 'cd devops-challenge && git fetch && git reset --hard origin/Marcelo-Michels'
       
       - name: Test2
-        run: ssh server 'ls -la'
+        run: ssh server 'cd devops-challenge && sudo docker-compose down'
+
+      - name: Test3
+        run: ssh server 'cd devops-challenge && sudo docker-compose up -d --build'
 
       #- name: Check out the source
       #  run: ssh server 'cd my-application && git fetch && git reset --hard origin/master'
