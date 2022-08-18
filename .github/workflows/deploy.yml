@@ -25,11 +25,11 @@ jobs:
           SSH_HOST: ${{ secrets.SERVER_SSH_HOST }}
 
       - name: Download
-        run: ssh server 'git clone -b Marcelo-Michels https://github.com/cellodev/devops-challenge.git'
+        run: ssh server 'rm -rf devops-challenge/ && git clone -b Marcelo-Michels https://github.com/cellodev/devops-challenge.git'
 
-      - name: Update
-        run: ssh server 'cd devops-challenge && git fetch && git reset --hard origin/Marcelo-Michels'
-      
+      - name: Dependecies-1
+        run: ssh server 'cd devops-challenge && chmod +x configure-server.sh && ./configure-server.sh'
+
       - name: Server-Down
         run: ssh server 'cd devops-challenge && sudo docker-compose down'
 
