@@ -1,39 +1,18 @@
-# Desafio DevOps Apiki.
+# Resolução desafio Apiki
 
-Objetivo é criar um processo automatizado para construção de um servidor web para [WordPress](https://wordpress.org/) em sua última versão.
+## Funcionamento
 
-O candidato deve seguir os seguintes **Requisitos**;
+A aplicação se resume em 3 containers:
 
-  - O projeto dever ser configurado na [AWS](https://aws.amazon.com/free/), crie uma conta Free.
-  - A máquina configurada deverar ter às portas 80, 443 e 22 abertas.
-  - Uso de Shell Script **Linux**.
-  - [Docker](https://www.docker.com/) 
+1. App - Contém o web server Apache, Php8.1 e o Wordpress instalado.
+2. Nginx - Nginx com configuração para proxy reverso do web server.
+3. Mysql - banco de dados independente com a função de servir o Wordpress.
 
-### Arquitertura!
+## Entrega
 
-  - [Nginx](https://www.nginx.com/) configurado como proxy para o Apache.
-  - [Apache](https://www.apache.org/) servidor para o WordPress.
-  - [PHP](https://php.net/) a última versão.
-  - [MySql](https://www.mysql.com/) Versão mínima requirida 5.7.
-  - [WordPress](https://wordpress.org) última versão configurada no servidor Apache.
-  
-  **Modelo conceitual**
+Está tudo pronto, sempre quando ouver um Push no repositório irá desencadear um estágio via Github-actions que tem como função instalar as dependêcias e realizar o deploy em uma instância EC2 na AWS.
+**_NOTE:_**  As credenciais para acesso da instância precisam ser registradas via github secrets, as mesmas foram enviadas via email.
 
-[![N|Solid](https://apiki.com/wp-content/uploads/2019/05/Screenshot_20190515_174205.png)](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
-
----
-
-### Se liga!
-
-Você também pode usar como **Diferencial**:
-  
-  - [Docker Compose](https://docs.docker.com/compose/).
-  - [Kubernetes](https://kubernetes.io/).
-  - [Ansible](https://www.ansible.com/).
-  - [RDS AWS](https://aws.amazon.com/pt/rds/).
-  - Outras tecnologias para somar no projeto.  
-
----
 
 ### Entrega
 
