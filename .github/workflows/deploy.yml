@@ -1,9 +1,6 @@
 name: Deploy
 
-on:
-  push:
-    branches:
-    - Marcelo-Michels
+on: push
 
 jobs:
   deploy:
@@ -28,7 +25,7 @@ jobs:
           SSH_HOST: ${{ secrets.SERVER_SSH_HOST }}
 
       - name: Test
-        run: ssh server 'whoiam'
+        run: ssh server 'ls'
 
       #- name: Check out the source
       #  run: ssh server 'cd my-application && git fetch && git reset --hard origin/master'
