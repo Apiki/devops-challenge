@@ -24,18 +24,11 @@ jobs:
           SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
           SSH_HOST: ${{ secrets.SERVER_SSH_HOST }}
 
-      - name: Test
+      - name: Update
         run: ssh server 'cd devops-challenge && git fetch && git reset --hard origin/Marcelo-Michels'
       
-      - name: Test2
+      - name: Server-Down
         run: ssh server 'cd devops-challenge && sudo docker-compose down'
 
-      - name: Test3
+      - name: Server-Up
         run: ssh server 'cd devops-challenge && sudo docker-compose up -d --build'
-
-      #- name: Check out the source
-      #  run: ssh server 'cd my-application && git fetch && git reset --hard origin/master'
-
-      #- name: Start the server
-      #  if: ${{ always() }}
-      #  run: ssh server 'sudo systemctl start my-application'
