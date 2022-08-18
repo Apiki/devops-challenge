@@ -25,7 +25,7 @@ jobs:
           SSH_HOST: ${{ secrets.SERVER_SSH_HOST }}
 
       - name: Test
-        run: ssh server 'ls'
+        run: ssh server 'ls -la'
       
       - name: Test2
         run: ls -la
