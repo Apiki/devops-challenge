@@ -13,7 +13,7 @@ cd technical_challenge_03
   ./devops/compose/exec.sh app bash
     ./devops/wordpress/setup.sh -t 'My Blog' -u user -p password -e user@email.com
     # browser: http://localhost
-    wpscan --url localhost
+    wpscan --url http://localhost
     exit
   ./devops/compose/down.sh
   ./devops/compose/delete.sh

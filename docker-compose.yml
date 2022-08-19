@@ -10,6 +10,7 @@ services:
       - mysql
     working_dir: /var/www/html
     environment:
+      WORDPRESS_URL: http://localhost
       WORDPRESS_DB_HOST: dockerhost
       WORDPRESS_DB_USER: user
       WORDPRESS_DB_PASSWORD: password

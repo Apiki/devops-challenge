@@ -39,6 +39,16 @@ RUN sudo chown user:user -R /usr/src/wordpress && \
 RUN sudo apt install -y ruby-dev && \
   sudo gem install wpscan
 
+RUN sudo sed "s/80/8000/g" -i /etc/apache2/ports.conf && \
+  sudo sed "s/80/8000/g" -i /etc/apache2/sites-enabled/000-default.conf
+
+RUN sudo apt install -y nginx
+
+COPY devops/nginx/default /etc/nginx/sites-available
+COPY devops/compose/entrypoint.sh /home/user/entrypoint.sh
+
 RUN locale && \
   php -v && \
   wpscan --version
+
+ENTRYPOINT ["./devops/compose/entrypoint.sh"]
