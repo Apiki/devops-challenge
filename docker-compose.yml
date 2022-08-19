@@ -1,0 +1,42 @@
+version: '3.8'
+services:
+  app:
+    build:
+      args:
+        ARG_LINUX_LOCALE: en_US.UTF-8
+        ARG_WORDPRESS_PHP_APACHE_VERSION: 6.0.1-php8.1-apache
+      context: .
+    depends_on:
+      - mysql
+    working_dir: /var/www/html
+    environment:
+      WORDPRESS_URL: http://localhost
+      WORDPRESS_DB_HOST: dockerhost
+      WORDPRESS_DB_USER: user
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_NAME: technical_challenge_03_development
+    extra_hosts:
+      - dockerhost:host-gateway
+    ports:
+      - 80:80
+    tty: true
+    volumes:
+      - app_local:/usr/local
+      - ~/.ssh:/home/user/.ssh
+      - ~/.gitconfig:/home/user/.gitconfig
+      - ~/.bash_history:/home/user/.bash_history
+      - .:/var/www/html
+  mysql:
+    image: mysql:8.0.30
+    environment:
+      MYSQL_DATABASE: technical_challenge_03_development
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_RANDOM_ROOT_PASSWORD: true
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+volumes:
+  app_local:
+  mysql_data:

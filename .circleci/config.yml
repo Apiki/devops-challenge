@@ -1,0 +1,24 @@
+version: 2.1
+
+jobs:
+  ci_job:
+    machine: true
+    working_directory: ~/technical_challenge_03
+    steps:
+      - checkout
+      - run:
+          name: Build
+          command: ./devops/compose/build.sh 1> /dev/null
+      - run:
+          name: Up
+          command: ./devops/compose/up.sh 1> /dev/null
+      - run:
+          name: Setup
+          command: ./devops/wordpress/setup.sh -t 'My Blog' -u user -p password -e user@email.com 1> /dev/null
+      - run:
+          name: WPScan
+          command: ./devops/compose/exec.sh app 'wpscan --url localhost' 1> /dev/null
+workflows:
+  ci_workflow:
+    jobs:
+      - ci_job
