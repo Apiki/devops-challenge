@@ -27,12 +27,12 @@ services:
       - ~/.bash_history:/home/user/.bash_history
       - .:/var/www/html
   mysql:
-    image: mysql:8.0.30
+    image: mysql:8.0.28
     environment:
       MYSQL_DATABASE: technical_challenge_03_development
       MYSQL_USER: user
       MYSQL_PASSWORD: password
-      MYSQL_RANDOM_ROOT_PASSWORD: true
+      MYSQL_RANDOM_ROOT_PASSWORD: t
     volumes:
       - mysql_data:/var/lib/mysql
     ports:

@@ -9,7 +9,7 @@ executors:
           WORDPRESS_DB_USER: user
           WORDPRESS_DB_PASSWORD: password
           WORDPRESS_DB_NAME: technical_challenge_03_development
-      - image: mysql:8.0.30
+      - image: mysql:8.0.28
         environment:
           MYSQL_DATABASE: technical_challenge_03_development
           MYSQL_USER: user
