@@ -2,12 +2,16 @@
 
 - Description: [challenge.md](https://github.com/juniormesquitadandao/marcelo-junior/blob/master/challenge.md)
 
+## Architecture
+
+GitHub -> Docker -> Docker Compose -> Linux -> MySQL -> PHP -> Wordpress -> Apache -> Nginx -> WPScan -> Circle CI -> GitHub Webhooks -> AWS (IAM -> CloudWatch -> Codebuild -> CLI -> ECR -> ECS -> ASG -> EC2 -> VPC -> PS -> IG -> SG -> TG -> ALB -> Cloudfront -> R53 -> ACM -> RDS MySQL)
+
 ## Setup
 
 - Configure host: https://github.com/juniormesquitadandao/gerlessver
 
 ```sh
-cd technical_challenge_03
+cd marcelo-junior/technical_challenge_03
   chmod +x devops/**/*.sh
   ./devops/compose/config.sh
   ./devops/compose/build.sh
@@ -20,3 +24,15 @@ cd technical_challenge_03
   ./devops/compose/down.sh
   ./devops/compose/delete.sh
 ```
+
+## AWS
+
+```sh
+chmod 400 key-pair.pem
+ssh -i key-pair.pem ec2-user@ec2-${ipv4}.compute-1.amazonaws.com
+yes
+  docker exec -it $(docker ps -lq) bash
+    exit
+  exit
+```
+
