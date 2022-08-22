@@ -1,52 +1,40 @@
-# Desafio DevOps Apiki.
+# technical_challenge_03
 
-Objetivo é criar um processo automatizado para construção de um servidor web para [WordPress](https://wordpress.org/) em sua última versão.
+- Description: [challenge.md](https://github.com/juniormesquitadandao/marcelo-junior/blob/master/challenge.md)
 
-O candidato deve seguir os seguintes **Requisitos**;
+## Architecture
 
-  - O projeto dever ser configurado na [AWS](https://aws.amazon.com/free/), crie uma conta Free.
-  - A máquina configurada deverar ter às portas 80, 443 e 22 abertas.
-  - Uso de Shell Script **Linux**.
-  - [Docker](https://www.docker.com/) 
+GitHub -> Docker -> Docker Compose -> Linux -> MySQL -> PHP -> Wordpress -> Apache -> Nginx -> WPScan -> Circle CI -> GitHub Webhooks -> AWS (IAM -> CloudWatch -> Codebuild -> CLI -> ECR -> ECS -> ASG -> EC2 -> VPC -> PS -> IG -> SG -> TG -> ALB -> Cloudfront -> R53 -> ACM -> RDS MySQL)
 
-### Arquitertura!
+https://technical-challenge-03.jmdcursoaws.tk
 
-  - [Nginx](https://www.nginx.com/) configurado como proxy para o Apache.
-  - [Apache](https://www.apache.org/) servidor para o WordPress.
-  - [PHP](https://php.net/) a última versão.
-  - [MySql](https://www.mysql.com/) Versão mínima requirida 5.7.
-  - [WordPress](https://wordpress.org) última versão configurada no servidor Apache.
-  
-  **Modelo conceitual**
+## Setup
 
-[![N|Solid](https://apiki.com/wp-content/uploads/2019/05/Screenshot_20190515_174205.png)](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
+- Configure host: https://github.com/juniormesquitadandao/gerlessver
 
----
+```sh
+cd marcelo-junior/technical_challenge_03
+  chmod +x devops/**/*.sh
+  ./devops/compose/config.sh
+  ./devops/compose/build.sh
+  ./devops/compose/up.sh
+  ./devops/compose/exec.sh app bash
+    ./devops/wordpress/setup.sh -t 'My Blog' -u user -p password -e user@email.com
+    # browser: http://localhost
+    wpscan --url http://localhost
+    exit
+  ./devops/compose/down.sh
+  ./devops/compose/delete.sh
+```
 
-### Se liga!
+## AWS
 
-Você também pode usar como **Diferencial**:
-  
-  - [Docker Compose](https://docs.docker.com/compose/).
-  - [Kubernetes](https://kubernetes.io/).
-  - [Ansible](https://www.ansible.com/).
-  - [RDS AWS](https://aws.amazon.com/pt/rds/).
-  - Outras tecnologias para somar no projeto.  
+```sh
+chmod 400 key-pair.pem
+ssh -i key-pair.pem ec2-user@ec2-${ipv4}.compute-1.amazonaws.com
+yes
+  docker exec -it $(docker ps -lq) bash
+    exit
+  exit
+```
 
----
-
-### Entrega
-
-1. Efetue o fork deste repositório e crie um branch com o seu nome e sobrenome. (exemplo: fulano-dasilva)
-2. Após finalizar o desafio, crie um Pull Request.
-3. Aguarde algum contribuidor realizar o code review.
-4. Deverá conter a documentação para instalação e configuração README.md.
-5. Enviar para o email wphost@apiki.com os dados de acesso SSH com permissão root, da máquina configurada na AWS.
-
----
-
-### Validação
-
-* Será executado os precessos de instalação e configuração de acordo com a orientação da documentação em um servidor interno da Apiki.
-* Será avaliado o processo de automação para criação do ambiente em cloud, tempo de execução e a configuração no server na AWS com os dados fornecidos pelo candidato.
-* Deverar constar pelo menos 2 containers.

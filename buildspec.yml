@@ -1,0 +1,30 @@
+version: 0.2
+
+run-as: root
+
+phases:
+  install:
+    on-failure: ABORT
+    commands:
+      - mv /usr/local/bin/aws /usr/local/bin/aws2
+      - cd technical_challenge_03
+    finally:
+      - echo Fixing AWC CLI conflict between V1 and V2
+  pre_build:
+    on-failure: ABORT
+    commands: |
+      ./devops/codebuild/pre_build.sh
+    finally:
+      - echo Building base image
+  build:
+    on-failure: ABORT
+    commands: |
+      ./devops/codebuild/build.sh
+    finally:
+      - echo Building latest image
+  post_build:
+    on-failure: ABORT
+    commands: |
+      ./devops/codebuild/post_build.sh
+    finally:
+      - echo Deploying latest image
