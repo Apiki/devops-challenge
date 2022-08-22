@@ -6,6 +6,8 @@
 
 GitHub -> Docker -> Docker Compose -> Linux -> MySQL -> PHP -> Wordpress -> Apache -> Nginx -> WPScan -> Circle CI -> GitHub Webhooks -> AWS (IAM -> CloudWatch -> Codebuild -> CLI -> ECR -> ECS -> ASG -> EC2 -> VPC -> PS -> IG -> SG -> TG -> ALB -> Cloudfront -> R53 -> ACM -> RDS MySQL)
 
+https://technical-challenge-03.jmdcursoaws.tk
+
 ## Setup
 
 - Configure host: https://github.com/juniormesquitadandao/gerlessver
