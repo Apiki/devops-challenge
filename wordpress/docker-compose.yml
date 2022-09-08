@@ -1,0 +1,18 @@
+version: '2.4'
+services:
+  wordpress:
+    container_name: wordpress
+    image: wordpress:6.0.2-php8.0-apache
+    restart: always
+    volumes:
+      - ./html:/var/www/html
+    ports:
+      - "8100:80"
+    env_file:
+      - docker-compose.env
+    cpus: 0.7
+    mem_limit: 512M
+    memswap_limit: 512M
+    mem_swappiness: 0
+    tty: true
+

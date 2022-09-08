@@ -1,0 +1,735 @@
+# Translation of Themes - Twenty Twenty-One in Portuguese (Brazil)
+# This file is distributed under the same license as the Themes - Twenty Twenty-One package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-04-19 14:40:37+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+"Language: pt_BR\n"
+"Project-Id-Version: Themes - Twenty Twenty-One\n"
+
+#. Description of the theme
+msgid "Twenty Twenty-One is a blank canvas for your ideas and it makes the block editor your best brush. With new block patterns, which allow you to create a beautiful layout in a matter of seconds, this theme’s soft colors and eye-catching — yet timeless — design will let your work shine. Take it for a spin! See how Twenty Twenty-One elevates your portfolio, business website, or personal blog."
+msgstr "O Twenty Twenty-One é uma tela em branco para suas idéias e faz do editor de blocos o seu melhor pincel. Com novos padrões de blocos, que lhe permitem criar um belo layout em questão de segundos, as cores suaves deste tema e o design atraente - mas atemporal - farão seu trabalho brilhar. Experimente! Veja como o Twenty Twenty-One eleva seu portfólio, seu site comercial ou seu blog pessoal."
+
+#. Theme Name of the theme
+#: inc/block-patterns.php:20
+msgid "Twenty Twenty-One"
+msgstr "Twenty Twenty-One"
+
+#: inc/template-tags.php:245
+msgid "Older <span class=\"nav-short\">posts</span>"
+msgstr "<span class=\"nav-short\">Posts</span> mais antigos"
+
+#: inc/template-tags.php:234
+msgid "Newer <span class=\"nav-short\">posts</span>"
+msgstr "<span class=\"nav-short\">Posts</span> mais recentes"
+
+#: classes/class-twenty-twenty-one-dark-mode.php:189
+#: classes/class-twenty-twenty-one-customize-notice-control.php:42
+msgid "https://wordpress.org/support/article/twenty-twenty-one/#dark-mode-support"
+msgstr "https://wordpress.org/support/article/twenty-twenty-one/#dark-mode-support"
+
+#. translators: %s: Twenty Twenty-One support article URL.
+#: classes/class-twenty-twenty-one-dark-mode.php:188
+msgid "Dark Mode is a device setting. If a visitor to your site requests it, your site will be shown with a dark background and light text. <a href=\"%s\">Learn more about Dark Mode.</a>"
+msgstr "O modo escuro é uma configuração do dispositivo. Se um visitante do seu site solicitar isso, seu site será exibido com um fundo escuro e um texto claro. <a href=\"%s\">Saiba mais sobre o modo escuro.</a>"
+
+#: classes/class-twenty-twenty-one-dark-mode.php:192
+msgid "Dark Mode can also be turned on and off with a button that you can find in the bottom right corner of the page."
+msgstr "O modo escuro também pode ser ativado ou desativado com um botão que você pode encontrar no canto inferior direito da página."
+
+#: classes/class-twenty-twenty-one-dark-mode.php:408
+msgid "This website uses LocalStorage to save the setting when Dark Mode support is turned on or off.<br> LocalStorage is necessary for the setting to work and is only used when a user clicks on the Dark Mode button.<br> No data is saved in the database or transferred."
+msgstr "Este site usa o LocalStorage para salvar a configuração quando o suporte ao modo escuro é ligado ou desligado.<br>O LocalStorage é necessário para que a configuração funcione e só é usado quando o usuário clica no botão Modo escuro.<br>Nenhum dado é salvo no banco de dados ou transferido."
+
+#: classes/class-twenty-twenty-one-dark-mode.php:407
+msgid "Suggested text:"
+msgstr "Texto sugerido:"
+
+#: classes/class-twenty-twenty-one-dark-mode.php:406
+msgid "Twenty Twenty-One uses LocalStorage when Dark Mode support is enabled."
+msgstr "Twenty Twenty-One utiliza o LocalStorage quando o suporte do modo escuro está ativo."
+
+#: classes/class-twenty-twenty-one-dark-mode.php:199
+msgid "Dark Mode support"
+msgstr "Suporte ao modo escuro"
+
+#: classes/class-twenty-twenty-one-customize-notice-control.php:43
+msgid "Learn more about Dark Mode."
+msgstr "Saiba mais sobre o Modo escuro."
+
+#: classes/class-twenty-twenty-one-customize-notice-control.php:41
+msgid "To access the Dark Mode settings, select a light background color."
+msgstr "Para acessar as configurações do modo escuro, selecione uma cor de fundo clara."
+
+#: classes/class-twenty-twenty-one-dark-mode.php:145
+msgid "Colors & Dark Mode"
+msgstr "Cores e modo escuro"
+
+#: inc/template-tags.php:77
+msgctxt "Label for sticky posts"
+msgid "Featured post"
+msgstr "Post em destaque"
+
+#: inc/template-functions.php:399
+msgctxt "Post password form"
+msgid "Submit"
+msgstr "Enviar"
+
+#: inc/template-functions.php:399
+msgctxt "Post password form"
+msgid "Password"
+msgstr "Senha"
+
+#: inc/template-functions.php:174
+msgctxt "Added to posts and pages that are missing titles"
+msgid "Untitled"
+msgstr "Sem título"
+
+#: inc/block-patterns.php:117
+msgctxt "Block pattern sample content"
+msgid "Cambridge, MA, 02139"
+msgstr "Curitiba, PR, 80000-000"
+
+#: inc/block-patterns.php:117
+msgctxt "Block pattern sample content"
+msgid "123 Main Street"
+msgstr "Av. Principal, 123"
+
+#: inc/block-patterns.php:117
+msgctxt "Block pattern sample content"
+msgid "123-456-7890"
+msgstr "123-456-7890"
+
+#: inc/block-patterns.php:117
+msgctxt "Block pattern sample content"
+msgid "example@example.com"
+msgstr "exemplo@exemplo.com.br"
+
+#: classes/class-twenty-twenty-one-customize.php:143
+msgctxt "Customizer control"
+msgid "Background color"
+msgstr "Cor de fundo"
+
+#. translators: %s: WordPress Version.
+#: inc/back-compat.php:42 inc/back-compat.php:61 inc/back-compat.php:86
+msgid "This theme requires WordPress 5.3 or newer. You are running version %s. Please upgrade."
+msgstr "Este tema requer o WordPress 5.3 ou mais recente. Você está executando a versão %s, é necessário atualizar."
+
+#. translators: %: Page number.
+#: image.php:46 template-parts/content/content-single.php:30
+#: template-parts/content/content-page.php:36
+#: template-parts/content/content.php:36
+msgid "Page %"
+msgstr "Página %"
+
+#: functions.php:187
+msgctxt "Font size"
+msgid "XXXL"
+msgstr "XXGG"
+
+#: functions.php:181
+msgctxt "Font size"
+msgid "XXL"
+msgstr "XGG"
+
+#: functions.php:175
+msgctxt "Font size"
+msgid "XL"
+msgstr "GG"
+
+#: functions.php:169
+msgctxt "Font size"
+msgid "L"
+msgstr "G"
+
+#: functions.php:163
+msgctxt "Font size"
+msgid "M"
+msgstr "M"
+
+#: functions.php:157
+msgctxt "Font size"
+msgid "S"
+msgstr "P"
+
+#: functions.php:151
+msgctxt "Font size"
+msgid "XS"
+msgstr "PP"
+
+#: comments.php:87
+msgid "Leave a comment"
+msgstr "Deixe um comentário"
+
+#. translators: %s: Comment count number.
+#: comments.php:40
+msgctxt "Comments title"
+msgid "%s comment"
+msgid_plural "%s comments"
+msgstr[0] "%s comentário"
+msgstr[1] "%s comentários"
+
+#: comments.php:35
+msgid "1 comment"
+msgstr "1 comentário"
+
+#: classes/class-twenty-twenty-one-dark-mode.php:358
+msgid "On"
+msgstr "Ligado"
+
+#: classes/class-twenty-twenty-one-dark-mode.php:355
+msgid "Off"
+msgstr "Desligado"
+
+#. translators: %s: On/Off
+#: classes/class-twenty-twenty-one-dark-mode.php:345
+msgid "Dark Mode: %s"
+msgstr "Modo escuro: %s"
+
+#: inc/template-functions.php:397
+msgid "This content is password protected. Please enter a password to view."
+msgstr "Este conteúdo é protegido por senha. Digite a senha para ver."
+
+#: inc/menu-functions.php:35
+msgid "Open menu"
+msgstr "Abrir menu"
+
+#: inc/block-patterns.php:107
+msgid "&#8220;Reading&#8221; by Berthe Morisot"
+msgstr "&#8220;Lendo&#8221; de Berthe Morisot"
+
+#: inc/block-patterns.php:84
+msgid "&#8220;Self portrait&#8221; by Berthe Morisot"
+msgstr "&#8220;Auto-retrato&#8221; de Berthe Morisot"
+
+#: inc/block-patterns.php:84
+msgid "&#8220;Daffodils&#8221; by Berthe Morisot"
+msgstr "&#8220;Daffodils&#8221; de Berthe Morisot"
+
+#: inc/starter-content.php:43 inc/block-patterns.php:72
+#: inc/block-patterns.php:107
+msgid "&#8220;Roses Trémières&#8221; by Berthe Morisot"
+msgstr "&#8220;Roses Trémières&#8221; por Berthe Morisot"
+
+#: inc/template-functions.php:399
+msgctxt "Post password form"
+msgid "Enter"
+msgstr "Entrar"
+
+#: inc/starter-content.php:128
+msgctxt "Theme starter content"
+msgid "Check out the Support Forums"
+msgstr "Confira os fóruns de suporte"
+
+#: inc/starter-content.php:122
+msgctxt "Theme starter content"
+msgid "Read the Theme Documentation"
+msgstr "Ler a documentação do tema"
+
+#: inc/starter-content.php:112
+msgctxt "Theme starter content"
+msgid "Need help?"
+msgstr "Precisa de ajuda?"
+
+#: inc/starter-content.php:97
+msgctxt "Theme starter content"
+msgid "Twenty Twenty-One also includes an overlap style for column blocks. With a Columns block selected, open the \"Styles\" panel within the Editor sidebar. Choose the \"Overlap\" block style to try it out."
+msgstr "Twenty Twenty-One também inclui um estilo de sobreposição para blocos de colunas. Com um bloco de colunas selecionado, abra o painel \"Estilos\" dentro da barra lateral do Editor. Escolha o estilo de bloco \"Sobrepor\" para experimentá-lo."
+
+#: inc/starter-content.php:93
+msgctxt "Theme starter content"
+msgid "Overlap columns"
+msgstr "Sobrepor colunas"
+
+#: inc/starter-content.php:87
+msgctxt "Theme starter content"
+msgid "Twenty Twenty-One includes stylish borders for your content. With an Image block selected, open the \"Styles\" panel within the Editor sidebar. Select the \"Frame\" block style to activate it."
+msgstr "Twenty Twenty-One inclui bordas elegantes para seu conteúdo. Com um bloco de imagem selecionado, abra o painel \"Estilos\" dentro da barra lateral do Editor. Selecione o estilo de bloco \"Moldura\" para ativá-lo."
+
+#: inc/starter-content.php:83
+msgctxt "Theme starter content"
+msgid "Frame your images"
+msgstr "Molduras nas imagens"
+
+#: inc/starter-content.php:77
+msgctxt "Theme starter content"
+msgid "Block patterns are pre-designed groups of blocks. To add one, select the Add Block button [+] in the toolbar at the top of the editor. Switch to the Patterns tab underneath the search bar, and choose a pattern."
+msgstr "Os padrões de blocos são grupos de blocos pré-desenhados. Para adicionar um, selecione o botão Adicionar bloco [+] na barra de ferramentas na parte superior do editor. Mude para a aba \"Padrões\" embaixo da barra de busca e escolha um padrão."
+
+#: inc/starter-content.php:73
+msgctxt "Theme starter content"
+msgid "Add block patterns"
+msgstr "Adicione padrões de blocos"
+
+#: inc/starter-content.php:30 inc/starter-content.php:33
+msgctxt "Theme starter content"
+msgid "Create your website with blocks"
+msgstr "Crie seu site com blocos"
+
+#: inc/block-patterns.php:107
+msgid "Reading"
+msgstr "Lendo"
+
+#: inc/block-patterns.php:107
+msgid "Young Woman in Mauve"
+msgstr "Jovem mulher em Mauve"
+
+#: inc/block-patterns.php:107
+msgid "The Garden at Bougival"
+msgstr "O jardim em Bougival"
+
+#: inc/block-patterns.php:107
+msgid "In the Bois de Boulogne"
+msgstr "No Bois de Boulogne"
+
+#: inc/block-patterns.php:107
+msgid "Villa with Orange Trees, Nice"
+msgstr "Villa com Laranjeiras, Nice"
+
+#: inc/block-patterns.php:107
+msgid "Roses Trémières"
+msgstr "Roses Trémières"
+
+#: inc/block-patterns.php:96
+msgid "&#8220;Villa with Orange Trees, Nice&#8221; by Berthe Morisot"
+msgstr "&#8220;Villa com Laranjeiras, Nice&#8221; de Berthe Morisot"
+
+#: inc/block-patterns.php:96
+msgid "Beautiful gardens painted by Berthe Morisot in the late 1800s"
+msgstr "Belos jardins pintados por Berthe Morisot no final do século XIX"
+
+#: inc/block-patterns.php:96 inc/block-patterns.php:107
+msgid "&#8220;The Garden at Bougival&#8221; by Berthe Morisot"
+msgstr "&#8220;O jardim em Bougival&#8221; de Berthe Morisot"
+
+#: inc/starter-content.php:61 inc/block-patterns.php:72
+#: inc/block-patterns.php:107
+msgid "&#8220;Young Woman in Mauve&#8221; by Berthe Morisot"
+msgstr "&#8220;Jovem mulher em Mauve&#8221; de Berthe Morisot"
+
+#: inc/starter-content.php:51 inc/block-patterns.php:72
+#: inc/block-patterns.php:107
+msgid "&#8220;In the Bois de Boulogne&#8221; by Berthe Morisot"
+msgstr "&#8220;No Bois de Boulogne&#8221; de Berthe Morisot"
+
+#: inc/block-patterns.php:60
+msgid "Berthe Morisot<br>(French, 1841-1895)"
+msgstr "Berthe Morisot<br>(Francês, 1841-1895)"
+
+#: inc/block-patterns.php:60
+msgid "Playing in the Sand"
+msgstr "Brincando na areia"
+
+#: inc/block-patterns.php:60
+msgid "&#8220;Playing in the Sand&#8221; by Berthe Morisot"
+msgstr "&#8220;Brincando na areia&#8221; de Berthe Morisot"
+
+#. translators: %s: Parent post.
+#: image.php:59
+msgid "Published in %s"
+msgstr "Publicado em %s"
+
+#: classes/class-twenty-twenty-one-customize.php:113
+msgid "Summary"
+msgstr "Resumo"
+
+#: classes/class-twenty-twenty-one-customize.php:90
+msgid "Excerpt Settings"
+msgstr "Configurações do resumo"
+
+#: inc/block-styles.php:98
+msgid "Thick"
+msgstr "Grosso"
+
+#: classes/class-twenty-twenty-one-customize.php:111
+msgid "On Archive Pages, posts show:"
+msgstr "Nas páginas de arquivo, os posts mostram:"
+
+#. translators: %s: Author name.
+#: template-parts/post/author-bio.php:31
+msgid "View all of %s's posts."
+msgstr "Ver todos os posts de %s."
+
+#. translators: %s: Author name.
+#: inc/template-tags.php:49 template-parts/post/author-bio.php:19
+msgid "By %s"
+msgstr "Por %s"
+
+#: template-parts/content/content-none.php:61
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Parece que não conseguimos encontrar o que você está procurando. Talvez uma pesquisa pode ajudar."
+
+#: template-parts/content/content-none.php:56
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Nada foi encontrado com os termos da sua pesquisa. Tente novamente com algumas palavras-chaves diferentes."
+
+#. translators: %s: Link to WP admin new post page.
+#: template-parts/content/content-none.php:43
+msgid "Ready to publish your first post? <a href=\"%s\">Get started here</a>."
+msgstr "Pronto para publicar o seu primeiro post? <a href=\"%s\">Comece por aqui</a>."
+
+#: single.php:40
+msgid "Previous post"
+msgstr "Post anterior"
+
+#: single.php:39
+msgid "Next post"
+msgstr "Próximo post"
+
+#. translators: %s: Parent post link.
+#: single.php:25
+msgid "<span class=\"meta-nav\">Published in</span><span class=\"post-title\">%s</span>"
+msgstr "<span class=\"meta-nav\">Publicado em</span><span class=\"post-title\">%s</span>"
+
+#: searchform.php:26
+msgctxt "submit button"
+msgid "Search"
+msgstr "Pesquisar"
+
+#: searchform.php:24
+msgid "Search&hellip;"
+msgstr "Pesquisar&hellip;"
+
+#. translators: %d: The number of search results.
+#: search.php:33
+msgid "We found %d result for your search."
+msgid_plural "We found %d results for your search."
+msgstr[0] "Foi encontrado %d resultado para a sua pesquisa."
+msgstr[1] "Foi encontrados %d resultados para a sua pesquisa."
+
+#. translators: %s: Search term.
+#: template-parts/content/content-none.php:22 search.php:21
+msgid "Results for \"%s\""
+msgstr "Resultados para \"%s\""
+
+#. translators: %s: List of tags.
+#: inc/template-tags.php:118 inc/template-tags.php:162
+msgid "Tagged %s"
+msgstr "Marcado com %s"
+
+#. translators: %s: List of categories.
+#: inc/template-tags.php:108 inc/template-tags.php:152
+msgid "Categorized as %s"
+msgstr "Categorizado como %s"
+
+#. translators: Used between list items, there is a space after the comma.
+#: inc/template-tags.php:104 inc/template-tags.php:114
+#: inc/template-tags.php:148 inc/template-tags.php:158
+msgid ", "
+msgstr ", "
+
+#. translators: %s: Name of current post. Only visible to screen readers.
+#: inc/template-tags.php:92 inc/template-tags.php:135 image.php:68 image.php:93
+#: template-parts/content/content-page.php:48
+msgid "Edit %s"
+msgstr "Editar %s"
+
+#. translators: %s: Name of current post.
+#: inc/template-functions.php:132
+msgid "Continue reading %s"
+msgstr "Continuar lendo %s"
+
+#: inc/block-styles.php:71
+msgid "Dividers"
+msgstr "Divisores"
+
+#: inc/block-styles.php:62
+msgid "Frame"
+msgstr "Moldura"
+
+#: inc/block-styles.php:35 inc/block-styles.php:44 inc/block-styles.php:53
+#: inc/block-styles.php:80 inc/block-styles.php:89
+msgid "Borders"
+msgstr "Bordas"
+
+#: inc/block-styles.php:26
+msgid "Overlap"
+msgstr "Sobrepor"
+
+#: inc/block-patterns.php:116
+msgctxt "Block pattern description"
+msgid "A block with 3 columns that display contact information and social media links."
+msgstr "Um bloco com 3 colunas que exibe informação de contato e links de rede social."
+
+#: inc/block-patterns.php:114
+msgid "Contact information"
+msgstr "Informação de contato"
+
+#: inc/block-patterns.php:106
+msgctxt "Block pattern description"
+msgid "A list of projects with thumbnail images."
+msgstr "Uma lista de projetos com imagens em miniatura."
+
+#: inc/block-patterns.php:104
+msgid "Portfolio list"
+msgstr "Lista de portfólios"
+
+#: inc/block-patterns.php:95
+msgctxt "Block pattern description"
+msgid "An overlapping columns block with two images and a text description."
+msgstr "Um bloco de colunas sobrepostas com duas imagens e uma descrição de texto."
+
+#: inc/block-patterns.php:92
+msgid "Overlapping images and text"
+msgstr "Sobreposição de imagens e textos"
+
+#: inc/block-patterns.php:83
+msgctxt "Block pattern description"
+msgid "A media & text block with a big image on the left and a smaller one with bordered frame on the right."
+msgstr "Um bloco de mídia e texto com uma imagem grande à esquerda e um bloco menor com moldura de borda à direita."
+
+#: inc/block-patterns.php:80
+msgid "Two images showcase"
+msgstr "Exibição de duas imagens"
+
+#: inc/block-patterns.php:71
+msgctxt "Block pattern description"
+msgid "Three images inside an overlapping columns block."
+msgstr "Três imagens dentro de um bloco de colunas sobrepostas."
+
+#: inc/block-patterns.php:68
+msgid "Overlapping images"
+msgstr "Sobreposição de imagens"
+
+#: inc/block-patterns.php:59
+msgctxt "Block pattern description"
+msgid "A Media & Text block with a big image on the left and a heading on the right. The heading is followed by a separator and a description paragraph."
+msgstr "Um bloco de mídia e texto com uma grande imagem à esquerda e um cabeçalho à direita. O cabeçalho é seguido por um separador e um parágrafo de descrição."
+
+#: inc/block-patterns.php:56
+msgid "Media and text article title"
+msgstr "Título do artigo de mídia e texto"
+
+#: inc/block-patterns.php:48
+msgid "example@example.com"
+msgstr "exemplo@exemplo.com"
+
+#: inc/block-patterns.php:48
+msgid "Dribbble"
+msgstr "Dribbble"
+
+#: inc/block-patterns.php:48
+msgid "Instagram"
+msgstr "Instagram"
+
+#: inc/block-patterns.php:48
+msgid "Twitter"
+msgstr "Twitter"
+
+#: inc/block-patterns.php:48
+msgid "Let&#8217;s Connect."
+msgstr "Vamos nos conectar."
+
+#: inc/block-patterns.php:47
+msgctxt "Block pattern description"
+msgid "A huge text followed by social networks and email address links."
+msgstr "Um enorme texto seguido por links para redes sociais e endereço de e-mail."
+
+#: inc/block-patterns.php:44
+msgid "Links area"
+msgstr "Área de links"
+
+#: inc/block-patterns.php:36
+msgid "A new portfolio default theme for WordPress"
+msgstr "Um novo tema padrão de portfólio para WordPress"
+
+#: inc/block-patterns.php:33
+msgid "Large text"
+msgstr "Texto longo"
+
+#: image.php:81
+msgctxt "Used before full size attachment link."
+msgid "Full size"
+msgstr "Tamanho completo"
+
+#. translators: %s: Publish date.
+#: inc/template-tags.php:29
+msgid "Published %s"
+msgstr "%s publicado"
+
+#: comments.php:62 inc/template-tags.php:228 image.php:43
+#: template-parts/content/content-single.php:27
+#: template-parts/content/content-page.php:33
+#: template-parts/content/content.php:33
+msgid "Page"
+msgstr "Página"
+
+#: template-parts/header/site-nav.php:19
+msgid "Close"
+msgstr "Fechar"
+
+#: template-parts/header/site-nav.php:16
+msgid "Menu"
+msgstr "Menu"
+
+#: inc/starter-content.php:154 functions.php:76
+#: template-parts/header/site-nav.php:13
+msgid "Primary menu"
+msgstr "Menu primário"
+
+#: header.php:26
+msgid "Skip to content"
+msgstr "Pular para o conteúdo"
+
+#: functions.php:360
+msgid "Add widgets here to appear in your footer."
+msgstr "Adicione widgets aqui para aparecerem no rodapé."
+
+#: functions.php:358
+msgid "Footer"
+msgstr "Rodapé"
+
+#: functions.php:309
+msgid "Red to purple"
+msgstr "Vermelho para roxo"
+
+#: functions.php:304
+msgid "Purple to red"
+msgstr "Roxo para vermelho"
+
+#: functions.php:299
+msgid "Yellow to red"
+msgstr "Amarelo para vermelho"
+
+#: functions.php:294
+msgid "Red to yellow"
+msgstr "Vermelho para amarelo"
+
+#: functions.php:289
+msgid "Yellow to green"
+msgstr "Amarelo para verde"
+
+#: functions.php:284
+msgid "Green to yellow"
+msgstr "Verde para amarelo"
+
+#: functions.php:279
+msgid "Yellow to purple"
+msgstr "Amarelo para roxo"
+
+#: functions.php:274
+msgid "Purple to yellow"
+msgstr "Roxo para amarelo"
+
+#: functions.php:263
+msgid "White"
+msgstr "Branco"
+
+#: functions.php:258
+msgid "Yellow"
+msgstr "Amarelo"
+
+#: functions.php:253
+msgid "Orange"
+msgstr "Laranja"
+
+#: functions.php:248
+msgid "Red"
+msgstr "Vermelho"
+
+#: functions.php:243
+msgid "Purple"
+msgstr "Roxo"
+
+#: functions.php:238
+msgid "Blue"
+msgstr "Azul"
+
+#: functions.php:233
+msgid "Green"
+msgstr "Verde"
+
+#: functions.php:228
+msgid "Gray"
+msgstr "Cinza"
+
+#: inc/block-styles.php:107 functions.php:223
+msgid "Dark gray"
+msgstr "Cinza escuro"
+
+#: functions.php:218
+msgid "Black"
+msgstr "Preto"
+
+#: functions.php:186
+msgid "Gigantic"
+msgstr "Gigantesco"
+
+#: functions.php:180
+msgid "Huge"
+msgstr "Enorme"
+
+#: functions.php:174
+msgid "Extra large"
+msgstr "Extra grande"
+
+#: functions.php:168
+msgid "Large"
+msgstr "Grande"
+
+#: functions.php:162
+msgid "Normal"
+msgstr "Normal"
+
+#: functions.php:156
+msgid "Small"
+msgstr "Pequeno"
+
+#: functions.php:150
+msgid "Extra small"
+msgstr "Extra pequeno"
+
+#. translators: %s: WordPress.
+#: footer.php:60
+msgid "Proudly powered by %s."
+msgstr "Orgulhosamente desenvolvido com %s."
+
+#: footer.php:24 inc/starter-content.php:165 functions.php:77
+msgid "Secondary menu"
+msgstr "Menu secundário"
+
+#: comments.php:79
+msgid "Comments are closed."
+msgstr "Comentários estão encerrados."
+
+#: comments.php:71
+msgid "Newer comments"
+msgstr "Comentários mais recentes"
+
+#: comments.php:67
+msgid "Older comments"
+msgstr "Comentários mais antigos"
+
+#: classes/class-twenty-twenty-one-customize.php:114
+msgid "Full text"
+msgstr "Texto completo"
+
+#: classes/class-twenty-twenty-one-customize.php:80
+msgid "Display Site Title & Tagline"
+msgstr "Exibir o título do site e descrição"
+
+#: 404.php:21
+msgid "It looks like nothing was found at this location. Maybe try a search?"
+msgstr "Parece que nada foi encontrado neste local. Que tal tentar uma pesquisa?"
+
+#: 404.php:16 template-parts/content/content-none.php:30
+msgid "Nothing here"
+msgstr "Nada aqui"
+
+#. Author URI of the theme
+#: footer.php:61
+msgid "https://wordpress.org/"
+msgstr "https://br.wordpress.org/"
+
+#. Author of the theme
+msgid "the WordPress team"
+msgstr "a equipe do WordPress"
+
+#. Theme URI of the theme
+msgid "https://wordpress.org/themes/twentytwentyone/"
+msgstr "https://wordpress.org/themes/twentytwentyone/"

@@ -1,0 +1,28 @@
+version: '2.4'
+services:
+  nginxpr:
+    container_name: nginxpr
+    #image: ubuntu:20.04
+    image: nginxpr:v1
+    restart: always
+    volumes:
+      - ./html:/var/www/html
+      - ./nginx:/etc/nginx
+      - ./letsencrypt:/etc/letsencrypt
+      #- /usr/share/zoneinfo/America/Fortaleza:/usr/share/zoneinfo/America/Fortaleza:rw
+      - /etc/localtime:/etc/localtime:rw
+      - ./roda.sh:/tmp/roda.sh:ro
+        #- ./roda-original.sh:/tmp/roda.sh:ro
+    ports:
+      - "80:80"
+      - "443:443"
+    env_file:
+      - docker-compose.env
+    cpus: 0.5
+    mem_limit: 256MB
+    memswap_limit: 256MB
+    mem_swappiness: 0
+    tty: true
+    command: bash /tmp/roda.sh
+
+

@@ -1,0 +1,16 @@
+
+server {
+	listen 80;
+	server_name apikisite1.rodrigomonteiro.net;
+	access_log /dev/stdout;
+	error_log /dev/stdout;
+	include /etc/nginx/todos.conf;
+	#add_header Strict-Transport-Security "";
+
+	location / {
+		proxy_pass	http://apikisite1.rodrigomonteiro.net;
+	}
+
+
+	#return 301 https://$host$request_uri;
+}
