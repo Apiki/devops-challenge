@@ -13,7 +13,7 @@ variable "public_subnet" {
 variable "private_subnet" {
   type        = string
   description = "CIDR Block for Private Subnet"
-  default     = "10.0.1.0/24"
+  default     = "10.0.2.0/24"
 }
 
 # variable "vpc_subnets_cidr_blocks" {
@@ -62,4 +62,66 @@ variable "aws_az" {
   type        = string
   description = "Region for AWS Resources"
   default     = "us-east-1a"
+}
+
+#### RDS Variables ####
+variable "engine" {
+  description = "The database engine"
+  type = string
+  default = "mysql"
+}
+variable "allocated_storage" {
+  description = "The amount of allocated storage."
+  type = number
+  default = 10
+}
+variable "storage_type" {
+  description = "type of the storage"
+  type = string
+  default = "gp2"
+}
+variable "username" {
+  description = "Username for the master DB user."
+  default = "databaseteste"
+  type = string
+}
+variable "password" {
+  description = "password of the database"
+  default = "password"
+  type = string
+}
+variable "instance_class" {
+  description = "The RDS instance class"
+  default = "db.t2.micro"
+  type = string
+}
+variable "parameter_group_name" {
+  description = "Name of the DB parameter group to associate"
+  default = "default.mysql5.7"
+  type = string
+}
+variable "engine_version" {
+  description = "The engine version"
+  default = "5.7"
+  type = number
+}
+variable "skip_final_snapshot" {
+  description = "skip snapshot"
+  default = "true"
+  type = string
+}
+variable "identifier" {
+  description = "The name of the RDS instance"
+  default = "terraform-database-test"
+  type = string
+}
+variable "port" {
+  description = "The port on which the DB accepts connections"
+  default = "3306"
+  type = number
+}
+variable "name" {
+  description = "The database name"
+  default = "Mysqldatabase"
+  type = string
 }
