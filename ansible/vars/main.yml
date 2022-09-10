@@ -1,1 +1,17 @@
-user: ubuntu
+# User for deploy of docker and permissions
+user: vagrant
+# user: ubuntu
+
+# Adress of management network
+mgmt_net: 192.168.121.0/24
+
+# Mysql variables
+MYSQL_ROOT_PASSWORD: password
+MYSQL_DATABASE: wordpress
+MYSQL_USER: wordpress
+MYSQL_PASSWORD: wordpress
+
+
+WORDPRESS_DB_HOST: db:3306
+WORDPRESS_DB_USER: wordpress
+WORDPRESS_DB_PASSWORD: wordpress

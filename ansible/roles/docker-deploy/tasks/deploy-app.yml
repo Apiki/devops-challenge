@@ -1,0 +1,17 @@
+- name: Template a file to /etc/file.conf
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: /tmp/docker-compose.yml
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: '0644'
+  become: yes
+  become_user: "{{ user }}"
+
+
+- name: Deploy stack from a compose file
+  community.docker.docker_stack:
+    state: present
+    name: wordpress
+    compose:
+      - /tmp/docker-compose.yml

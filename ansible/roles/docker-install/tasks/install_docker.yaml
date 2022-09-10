@@ -16,7 +16,7 @@
 
 - name: add docker repo
   apt_repository:
-    repo: deb https://download.docker.com/linux/ubuntu focal stable
+    repo: deb [[arch=amd64] https://download.docker.com/linux/ubuntu focal stable
 
 - name: install docker 
   apt:
@@ -27,6 +27,7 @@
     packages:
       - docker-ce
       - docker-ce-cli
+      - docker-compose
       - containerd.io
 
 # Installs Docker SDK
@@ -39,17 +40,18 @@
   pip:
     name:
       - docker
-      - docker-compose
+      - jsondiff
       - requests
       - paramiko
       - pyOpenSSL
       - backports.ssl_match_hostname
+      # - docker-compose
       # - pywin32
 
 - name: Add user "{{ user }}" to docker group
   user: 
     name: "{{ user }}"
-    groups: docker, sudo
+    groups: docker, sudo, adm
     append: yes
 
 - name: Set authorized key for user {{ user }} copying it from current user
