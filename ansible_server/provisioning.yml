@@ -1,0 +1,83 @@
+---
+- hosts: all
+  remote_user: ubuntu
+  become: yes
+  become_user: root
+  order: sorted
+  tasks: 
+  - name: Install docker packages
+    remote_user: ubuntu
+    apt:
+      name: ['apt-transport-https','ca-certificates', 'curl', 'software-properties-common']
+      state: present
+      update_cache: yes
+    tags:
+      - docker
+
+  - name: Add Docker s GPG key for ubuntu from official site
+    remote_user: ubuntu
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+    tags:
+      - docker
+
+  - name: Configure Docker for ubuntu stable repository
+    remote_user: ubuntu
+    apt_repository:
+      repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+      state: present
+      update_cache: yes
+    tags:
+      - docker
+  
+  - name: Update apt packages
+    remote_user: ubuntu
+    apt:
+      update_cache: yes
+    tags:
+      - docker
+
+  - name: Install docker-ce
+    remote_user: ubuntu
+    apt:
+      name: ['docker-ce', 'docker-compose', 'nginx']
+      state: present
+      update_cache: yes    
+    tags:
+      - docker
+                    
+  - name: Add "ansible_ubuntu_demo" user to "docker" group
+    remote_user: ubuntu
+    user:
+      name: "ubuntu"
+      group: "docker"
+      append: yes
+    tags:
+      - docker
+  
+  - name: Clonando Repositorio
+    git:
+      repo: https://github.com/nunes-raphael/wordpress.git
+      dest: /home/ubuntu/wordpress
+
+  - name: Executando Docker-Compose
+    become: True
+    shell:
+      cmd: "docker-compose -f wordpress.yml up -d"
+      chdir: /home/ubuntu/wordpress/
+
+  - name: Alterando Configuracoes do nginx
+    become: True
+    shell:
+      cmd: "sudo unlink /etc/nginx/sites-enabled/default && sudo touch reverse-proxy.conf && sudo ln -s /etc/nginx/sites-available/reverse-proxy.conf /etc/nginx/sites-enabled/reverse-proxy.conf"      
+      
+  - name: Copiando Arquivo Nginx File
+    copy: src=./reverse-proxy.conf dest=/etc/nginx/sites-available/reverse-proxy.conf  
+
+  - name: Restart nginx
+    ansible.builtin.service:
+      name: nginx
+      state: restarted
+      enabled: true
+...
