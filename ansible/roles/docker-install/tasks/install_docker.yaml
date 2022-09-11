@@ -36,23 +36,32 @@
     name: python3-pip
 
 - name: install python sdk
-  become_user: "{{ user }}"
   pip:
-    name:
+    state: present
+    name: "{{ packages }}"
+  become: yes
+  become_user: "{{ user }}"
+  vars:
+    packages:
       - docker
       - jsondiff
+      - pyyaml
       - requests
       - paramiko
       - pyOpenSSL
       - backports.ssl_match_hostname
       # - docker-compose
       # - pywin32
+  
 
 - name: Add user "{{ user }}" to docker group
   user: 
     name: "{{ user }}"
     groups: docker, sudo, adm
     append: yes
+
+- name: Source bash profile.
+  shell: source $HOME/.profile $HOME/.bash_profile
 
 - name: Set authorized key for user {{ user }} copying it from current user
   ansible.posix.authorized_key:

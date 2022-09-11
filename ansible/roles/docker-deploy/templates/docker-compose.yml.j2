@@ -1,37 +1,20 @@
 version: '3.8'
 
 services:
-  db:
-    image: mysql:5.7
-    volumes:
-      - db_data:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: "{{ MYSQL_ROOT_PASSWORD }}"
-      MYSQL_DATABASE: "{{ MYSQL_DATABASE }}"
-      MYSQL_USER: "{{ MYSQL_USER }}"
-      MYSQL_PASSWORD: "{{ MYSQL_PASSWORD }}"
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    ports:
-      - '8080:80'
-    environment:
-      PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: "{{ MYSQL_ROOT_PASSWORD }}" 
-
   wordpress:
     image: wordpress:latest
     ports:
-      - '8000:80'
+      - '80:80'
     volumes:
       - wordpress_data:/var/www/html
     environment:
-      WORDPRESS_DB_HOST: "{{ WORDPRESS_DB_HOST }}"
-      WORDPRESS_DB_USER: "{{ MYSQL_USER }}"
-      WORDPRESS_DB_PASSWORD: "{{ MYSQL_PASSWORD }}"
+      WORDPRESS_DB_HOST: {{ WORDPRESS_DB_HOST }}
+      WORDPRESS_DB_USER: {{ WORDPRESS_DB_USER }}
+      WORDPRESS_DB_PASSWORD: {{ WORDPRESS_DB_PASSWORD }}
+      WORDPRESS_DB_NAME: {{ WORDPRESS_DB_NAME }}
+    #dns:
+    #  - 8.8.8.8
+    #  - 8.8.4.4
 
-networks:
-  wpsite:
 volumes:
-  db_data:
   wordpress_data:

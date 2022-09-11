@@ -1,5 +1,6 @@
 - hosts: all
   become: yes
+  # become_user: ubuntu
   gather_facts: true
   vars_files:
   - ./vars/main.yml
@@ -7,3 +8,4 @@
   - { role: common, tags: ["pre_tasks"]}
   - { role: docker-install, tags: ["install_docker"]}
   - { role: docker-deploy, tags: ["deploy_stacks"]}
+  - { role: wordpress, tags: ["wordpress"]}

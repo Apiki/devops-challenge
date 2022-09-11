@@ -14,4 +14,6 @@
     state: present
     name: wordpress
     compose:
-      - /tmp/docker-compose.yml
+    - /tmp/docker-compose.yml
+  # become: yes
+  become_user: "{{ user }}"

@@ -1,0 +1,45 @@
+
+- name: Download and Extract WorPress
+  unarchive:
+    src: https://wordpress.org/latest.tar.gz
+    dest: /var/www/
+    remote_src: yes
+
+- name: Update default Apache site
+  lineinfile:
+    path: /etc/apache2/sites-enabled/000-default.conf
+    state: present
+    regexp: '(.)+DocumentRoot /var/www/html'
+    line: 'DocumentRoot /var/www/wordpress'
+
+- name: Restart Apache
+  service:
+    name: apache2
+    state: restarted
+
+- name: Copy sample config file
+  command: mv /var/www/wordpress/wp-config-sample.php /var/www/wordpress/wp-config.php
+
+- name: Update Wordpress config file
+  lineinfile:
+    path: /var/www/wordpress/wp-config.php
+    regexp: "{{item.regexp}}"
+    line: "{{item.line}}"
+  with_items:
+    - {'regexp': "define\\( 'DB_NAME', '(.)+' \\);", 'line': "define( 'DB_NAME', '{{ WORDPRESS_DB_NAME }}' );"}
+    - {'regexp': "define\\( 'DB_USER', '(.)+' \\);", 'line': "define( 'DB_USER', '{{ WORDPRESS_DB_USER }}' );"}
+    - {'regexp': "define\\( 'DB_PASSWORD', '(.)+' \\);", 'line': "define( 'DB_PASSWORD', '{{ WORDPRESS_DB_PASSWORD}}' );"}
+    - {'regexp': "define\\( 'DB_HOST', '(.)+' \\);", 'line': "define( 'DB_HOST', '{{ WORDPRESS_DB_HOST}}' );"}
+
+- name: Update ownership to Apache user
+  file:
+    path: /var/www/wordpress/
+    state: directory
+    recurse: yes
+    owner: www-data
+
+- name: Set the correct permissions on Wordpress directories
+  command: find /var/www/wordpress/ -type d -exec chmod 750 {} \;
+
+- name: Set the correct permissions for Wordpress files
+  command: find /var/www/wordpress/ -type f -exec chmod 640 {} \;

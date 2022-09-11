@@ -1,4 +1,4 @@
 ---
 # vars file for roles/docker-install
 
-user: vagrant
+# user: vagrant
