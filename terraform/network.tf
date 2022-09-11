@@ -55,7 +55,8 @@ resource "aws_route_table_association" "rb_public_subnet" {
 resource "aws_subnet" "private_subnet" {
   vpc_id            = aws_vpc.vpc_main.id
   cidr_block        = var.private_subnet
-  availability_zone = var.aws_az
+  availability_zone = var.aws_az2
+  map_public_ip_on_launch = false
 
   tags = local.common_tags
 }
@@ -65,8 +66,8 @@ resource "aws_route_table" "rb_private" {
   vpc_id = aws_vpc.vpc_main.id
 
   route {
-    cidr_block = var.private_subnet
-    # gateway_id = aws_internet_gateway.igw_public.id
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw_public.id
   }
 
   tags = {

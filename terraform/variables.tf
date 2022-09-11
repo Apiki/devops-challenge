@@ -1,7 +1,7 @@
 variable "vpc_cidr_block" {
   type        = string
   description = "Base CIDR Block for VPC"
-  default     = "10.0.0.0/22"
+  default     = "10.0.0.0/18"
 }
 
 variable "public_subnet" {
@@ -64,6 +64,12 @@ variable "aws_az" {
   default     = "us-east-1a"
 }
 
+variable "aws_az2" {
+  type        = string
+  description = "Region for AWS Resources"
+  default     = "us-east-1b"
+}
+
 #### RDS Variables ####
 variable "engine" {
   description = "The database engine"
@@ -87,7 +93,7 @@ variable "username" {
 }
 variable "password" {
   description = "password of the database"
-  default = "super@senha"
+  default = "supersenha123"
   type = string
 }
 variable "instance_class" {
@@ -102,8 +108,8 @@ variable "parameter_group_name" {
 }
 variable "engine_version" {
   description = "The engine version"
-  default = "5.7"
-  type = number
+  default = "8.0.28"
+  type = string
 }
 variable "skip_final_snapshot" {
   description = "skip snapshot"
@@ -112,7 +118,7 @@ variable "skip_final_snapshot" {
 }
 variable "identifier" {
   description = "The name of the RDS instance"
-  default = "terraform-database-test"
+  default = "terraform-database"
   type = string
 }
 variable "port" {
@@ -122,6 +128,6 @@ variable "port" {
 }
 variable "name" {
   description = "The database name"
-  default = "Mysqldatabase"
+  default = "wordpress"
   type = string
 }

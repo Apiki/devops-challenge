@@ -38,18 +38,17 @@ resource "aws_security_group" "allow_http_and_ssh" {
     cidr_blocks      = ["0.0.0.0/0"] #Could be limited to only vpc cidr block
     ipv6_cidr_blocks = ["::/0"]
   }
-
-  /**
-   * Liberar posteriormente para o rds
+  
+  # RDS SG
   ingress {
-    description      = "SSH from VPC"
-    from_port        = 22
-    to_port          = 22
+    description      = "RDS Mysql"
+    from_port        = 3306
+    to_port          = 3306
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"] #Could be limited to only vpc cidr block
     ipv6_cidr_blocks = ["::/0"]
   }
-  */
+
 
   tags = {
     Name = "allow_tls"
