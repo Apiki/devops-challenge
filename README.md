@@ -1,52 +1,38 @@
-# Desafio DevOps Apiki.
+**Projeto Wordpress**
 
-Objetivo é criar um processo automatizado para construção de um servidor web para [WordPress](https://wordpress.org/) em sua última versão.
+Este projeto tem como objetivo disponibilizar um site wordpress na AWS de forma automatizada utilizando as seguintes tecnologias:
 
-O candidato deve seguir os seguintes **Requisitos**;
+* Terraform
+  * Provisiona a VPC;
+  * Cria uma máquina EC2 na AWS.
+* Ansible
+  * Faz a atualização dos pacotes;
+  * Instala o Docker, Docker-Compose e o nginx;
+  * Clona o repositório https://github.com/nunes-raphael/wordpress.git;
+  * Executa o docker-compose para a criação dos containers wordpress + mysql; 
+  * Configura o nginx como proxy reverso.
+* ShellScript
+  * Através do shell script é criada uma pipeline para construção do albiente 100% automatizada. 
+    
+INSTRUÇOES DE USO:
 
-  - O projeto dever ser configurado na [AWS](https://aws.amazon.com/free/), crie uma conta Free.
-  - A máquina configurada deverar ter às portas 80, 443 e 22 abertas.
-  - Uso de Shell Script **Linux**.
-  - [Docker](https://www.docker.com/) 
+Pré-requisito:
+Na máquina que será executada o script 'run.sh' é necessário instalar o terraform e o ansible:
 
-### Arquitertura!
+Terraform - Procedimento de Instalação
+* https://learn.hashicorp.com/tutorials/terraform/install-cli
 
-  - [Nginx](https://www.nginx.com/) configurado como proxy para o Apache.
-  - [Apache](https://www.apache.org/) servidor para o WordPress.
-  - [PHP](https://php.net/) a última versão.
-  - [MySql](https://www.mysql.com/) Versão mínima requirida 5.7.
-  - [WordPress](https://wordpress.org) última versão configurada no servidor Apache.
-  
-  **Modelo conceitual**
+Ansible - Procedimento de Instalação
+* https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
 
-[![N|Solid](https://apiki.com/wp-content/uploads/2019/05/Screenshot_20190515_174205.png)](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
+CONFIGURANDO O AMBIENTE:
 
----
-
-### Se liga!
-
-Você também pode usar como **Diferencial**:
-  
-  - [Docker Compose](https://docs.docker.com/compose/).
-  - [Kubernetes](https://kubernetes.io/).
-  - [Ansible](https://www.ansible.com/).
-  - [RDS AWS](https://aws.amazon.com/pt/rds/).
-  - Outras tecnologias para somar no projeto.  
-
----
-
-### Entrega
-
-1. Efetue o fork deste repositório e crie um branch com o seu nome e sobrenome. (exemplo: fulano-dasilva)
-2. Após finalizar o desafio, crie um Pull Request.
-3. Aguarde algum contribuidor realizar o code review.
-4. Deverá conter a documentação para instalação e configuração README.md.
-5. Enviar para o email wphost@apiki.com os dados de acesso SSH com permissão root, da máquina configurada na AWS.
-
----
-
-### Validação
-
-* Será executado os precessos de instalação e configuração de acordo com a orientação da documentação em um servidor interno da Apiki.
-* Será avaliado o processo de automação para criação do ambiente em cloud, tempo de execução e a configuração no server na AWS com os dados fornecidos pelo candidato.
-* Deverar constar pelo menos 2 containers.
+* Clonar o repositório: 
+  - https://github.com/nunes-raphael/infraestrutura-devops.git;
+* Criando a infraestrutura na AWS
+  - ./run.sh
+* Excluindo a infraestrutura na AWS
+  - ./run.sh --destroy
+* Acessando o servidor na AWS
+  - cd ./aws_ec2
+  - ssh-add wordpress-ec2.pem
