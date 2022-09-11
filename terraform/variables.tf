@@ -82,12 +82,12 @@ variable "storage_type" {
 }
 variable "username" {
   description = "Username for the master DB user."
-  default = "databaseteste"
+  default = "wordpress"
   type = string
 }
 variable "password" {
   description = "password of the database"
-  default = "password"
+  default = "super@senha"
   type = string
 }
 variable "instance_class" {
