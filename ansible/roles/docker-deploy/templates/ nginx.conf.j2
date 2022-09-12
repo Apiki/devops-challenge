@@ -1,0 +1,20 @@
+# Complete Nginx Docker reverse proxy config file
+server {
+  listen 80;
+  listen [::]:80;
+  server_name localhost;
+
+  location / {
+    root /usr/share/nginx/html;
+    index index.html index.htm;
+  }
+
+  location /sample {
+    proxy_pass http://{{ AWS_DNS_HOST }}:88/sample;
+  }
+
+  error_page 500 502 503 504 /50x.html;
+  location = /50x.html {
+    root /usr/share/nginx/html;
+  }
+} # End of Docker Nginx reverse proxy example file
