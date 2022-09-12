@@ -5,13 +5,9 @@ user: ubuntu
 # Adress of management network
 mgmt_net: 10.0.1.0/24
 
-# Mysql variables
-# MYSQL_ROOT_PASSWORD: password
-# MYSQL_DATABASE: wordpress
-# MYSQL_USER: wordpress
-# MYSQL_PASSWORD: wordpress
-
-WORDPRESS_DB_HOST: 
+WORDPRESS_DB_HOST:
 WORDPRESS_DB_USER: wordpress
-WORDPRESS_DB_PASSWORD: 
+WORDPRESS_DB_PASSWORD:
 WORDPRESS_DB_NAME: wordpress
+
+AWS_DNS_HOST:
