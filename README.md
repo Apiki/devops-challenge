@@ -66,6 +66,7 @@ OBS: A automação referente aos 2 ultimos passos está em desenvolvimento.
 ansible-playbook -i hosts main.yml -vvv
 ```
 ### ToDo
+
 - [x] RDS
 - [x] Terraform 
   - [x] ec2 
