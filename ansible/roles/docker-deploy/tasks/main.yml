@@ -1,4 +1,4 @@
 ---
 # tasks file for roles/docker-deploy
 - include_tasks: init_cluster.yml
-- include_tasks: deploy-app.yml
+# - include_tasks: deploy-app.yml
