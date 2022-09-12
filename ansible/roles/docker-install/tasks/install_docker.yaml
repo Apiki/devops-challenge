@@ -60,8 +60,8 @@
     groups: docker, sudo, adm
     append: yes
 
-- name: Source bash profile.
-  shell: source $HOME/.profile $HOME/.bash_profile
+# - name: Source bash profile.
+#   shell: source $HOME/.profile $HOME/.bash_profile
 
 - name: Set authorized key for user {{ user }} copying it from current user
   ansible.posix.authorized_key:
