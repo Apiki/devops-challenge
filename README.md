@@ -59,12 +59,13 @@ rds_endpoint = "database.jdoisajdas.us-east-1.rds.amazonaws.com:3306"
 ```
 - 4º - Apos isso, adicionei a saida do **public_ip** referente a ec2 ao arquivo hosts na pasta ansible abaixo do campo [aws].
 - 5º - E a saida do **rds_endpoint** como valor da variavel **WORDPRESS_DB_HOST** no arquivo ansible/vars/main.yml
-<br>
-OBS: A automação referente aos 2 ultimos passos está em desenvolvimento.
 - 6º - Execute o playbook com o seguinte comando.
 ```bash
 ansible-playbook -i hosts main.yml -vvv
 ```
+
+OBS: A automação referente aos 2 ultimos passos está em desenvolvimento.
+
 ### ToDo
 
 - [x] RDS
