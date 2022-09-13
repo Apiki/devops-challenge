@@ -1,11 +1,12 @@
 - hosts: all
   become: yes
-  # become_user: ubuntu
   gather_facts: true
   vars_files:
-  - ./vars/main.yml
+  - ./vars/tf_ansible_vars_file.yml
   roles: 
   - { role: common, tags: ["pre_tasks"]}
   - { role: docker-install, tags: ["install_docker"]}
-  - { role: docker-deploy, tags: ["deploy_stacks"]}
+  - { role: docker-cluster, tags: ["cluster_init"]}
   - { role: wordpress, tags: ["wordpress"]}
+  - { role: wp-ports, tags: ["ports"]}
+  - { role: docker-deploy, tags: ["deploy_stacks"]}
