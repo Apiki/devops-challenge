@@ -51,7 +51,7 @@ Neste projeto estão sendo utilizados as seguintes stacks:
 
 ## Installation
 Você vai precisar do **ansible**, **terraform** e o **aws cli**  instalados e configurados na machina que irá executar o deploy, ou então configurados as variaveis de ambiente da aws.
-- 1 º - Editar o arquivo "variables.tf" na pasta terraform e mude a senha do banco da variavel "password"
+- 1 º - Editar o arquivo "variables.tf" na pasta terraform e mude a senha do banco da variavel "password" e a ssh key que estará utilizando.
 - 2 º - Executar o terraform init e terraform apply e aguardo o provisionamento do ambiente.
 - 3 º - O terraform gerará o arquivo de hosts e variaveis com o output automaticamente, então execute o playbook com o seguinte comando.
 ```bash
