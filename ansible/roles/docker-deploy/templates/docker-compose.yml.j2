@@ -1,20 +1,33 @@
 version: '3.8'
 
 services:
-  wordpress:
-    image: wordpress:latest
-    ports:
-      - '80:80'
+  db:
+    image: mysql:5.7
     volumes:
-      - wordpress_data:/var/www/html
+      - db_data:/var/lib/mysql
+    ports:
+      - '3306:3306'
     environment:
-      WORDPRESS_DB_HOST: {{ WORDPRESS_DB_HOST }}
-      WORDPRESS_DB_USER: {{ WORDPRESS_DB_USER }}
-      WORDPRESS_DB_PASSWORD: {{ WORDPRESS_DB_PASSWORD }}
-      WORDPRESS_DB_NAME: {{ WORDPRESS_DB_NAME }}
-    #dns:
-    #  - 8.8.8.8
-    #  - 8.8.4.4
+      MYSQL_ROOT_PASSWORD: {{ WORDPRESS_DB_PASSWORD }}
+      MYSQL_DATABASE: {{ WORDPRESS_DB_NAME }}
+      MYSQL_USER: {{ WORDPRESS_DB_USER }}
+      MYSQL_PASSWORD: {{ WORDPRESS_DB_PASSWORD }}
+
+  #wordpress:
+  #  image: wordpress:latest
+  #  ports:
+  #    - '80:80'
+  #  volumes:
+  #    - wordpress_data:/var/www/html
+  #  environment:
+  #    WORDPRESS_DB_HOST: {{ WORDPRESS_DB_HOST }}
+  #    WORDPRESS_DB_USER: {{ WORDPRESS_DB_USER }}
+  #    WORDPRESS_DB_PASSWORD: {{ WORDPRESS_DB_PASSWORD }}
+  #    WORDPRESS_DB_NAME: {{ WORDPRESS_DB_NAME }}
+  #  #dns:
+  #  #  - 8.8.8.8
+  #  #  - 8.8.4.4
 
 volumes:
   wordpress_data:
+  db_data:

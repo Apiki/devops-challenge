@@ -1,13 +1,14 @@
 # User for deploy of docker and permissions
-# user: vagrant
-user: ubuntu
+user: vagrant
+# user: ubuntu
 
 # Adress of management network
-mgmt_net: 10.0.1.0/24
+mgmt_net: 192.168.121.0/24
+# mgmt_net: 10.0.1.0/24
 
-WORDPRESS_DB_HOST:
+WORDPRESS_DB_HOST: 127.0.0.1
 WORDPRESS_DB_USER: wordpress
-WORDPRESS_DB_PASSWORD:
+WORDPRESS_DB_PASSWORD: supersenha123
 WORDPRESS_DB_NAME: wordpress
 
 AWS_DNS_HOST:

@@ -18,11 +18,11 @@
   # become: yes
   become_user: "{{ user }}"
   
-- name: Deploy stack | NGINX
-  community.docker.docker_stack:
-    state: present
-    name: wordpress
-    compose:
-    - /tmp/docker-compose.yml
-  # become: yes
-  become_user: "{{ user }}"
+# - name: Deploy stack | NGINX
+#   community.docker.docker_stack:
+#     state: present
+#     name: wordpress
+#     compose:
+#     - /tmp/docker-compose.yml
+#   # become: yes
+#   become_user: "{{ user }}"

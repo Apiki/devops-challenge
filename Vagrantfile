@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
 
         devops.vm.provision :ansible do |ansible|
             ansible.playbook = "./ansible/main.yml"
-            # ansible.tags = "deploy_stacks"
+            ansible.tags = "wordpress,deploy_stacks"
         end
     end
 end
