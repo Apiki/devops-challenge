@@ -1,0 +1,8 @@
+---
+# handlers file for roles/docker-install
+
+- name: restart sshd
+  ansible.builtin.systemd:
+    state: restarted
+    daemon_reload: yes
+    name: sshd

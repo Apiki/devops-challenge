@@ -1,0 +1,12 @@
+- hosts: all
+  become: yes
+  gather_facts: true
+  vars_files:
+  - ./vars/tf_ansible_vars_file.yml
+  roles: 
+  - { role: common, tags: ["pre_tasks"]}
+  - { role: docker-install, tags: ["install_docker"]}
+  - { role: docker-cluster, tags: ["cluster_init"]}
+  - { role: wordpress, tags: ["wordpress"]}
+  - { role: wp-ports, tags: ["ports"]}
+  - { role: docker-deploy, tags: ["deploy_stacks"]}

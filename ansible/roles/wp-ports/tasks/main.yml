@@ -1,0 +1,3 @@
+---
+# tasks file for wp-ports
+- include_tasks: ports-config.yml

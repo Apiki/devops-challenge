@@ -1,0 +1,28 @@
+- name: install apache and php 
+  apt:
+    name: "{{ packages }}"
+    state: latest
+    update_cache: yes
+  vars:
+    packages:
+      - apache2
+      - libapache2-mod-php
+      - php-cli
+      - python3-pymysql
+      - php
+      - php-mysql
+      # - php-mcrypt
+      - php-gd
+      - php-fpm
+      - php-common
+      - php-mbstring
+      - php-xmlrpc
+      - php-xml
+      - php-mysql
+      - php-zip
+      - php-curl
+      - php-soap
+      - php-intl
+
+
+

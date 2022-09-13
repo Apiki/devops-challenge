@@ -1,0 +1,30 @@
+- name: Create a directory 
+  ansible.builtin.file:
+    path: /tmp/docker
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: '0755'
+
+- name: copy templetes
+  ansible.builtin.template:
+    src: "{{item.name_templete}}"
+    dest: /tmp/docker/{{ item.dest_name }}
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: '0755'
+  become: yes
+  become_user: "{{ user }}"
+  with_items:
+    - { 'name_templete': "nginx-compose.yml.j2", 'dest_name': "nginx-compose.yml"}
+    - { 'name_templete': "nginx.conf.j2", 'dest_name': "nginx.conf"}
+    # - { 'name_templete': "docker-compose.yml.j2", 'dest_name': "docker-compose.yml"}
+
+- name: Deploy stack | NGINX
+  community.docker.docker_stack:
+    state: present
+    name: nginx
+    compose:
+    - /tmp/docker/nginx-compose.yml
+  become: yes
+  become_user: "{{ user }}"  

@@ -1,0 +1,18 @@
+- name: 'Atualizando reposit.'
+  raw: apt-get update -y
+- name: 'Install python'
+  raw: 'apt-get install -y python3'
+- name: Disable SWAP since docker can't work with swap enabled (1/2)
+  shell: |
+    swapoff -a
+- name: Disable SWAP in fstab since docker can't work with swap enabled (2/2)
+  replace:
+    path: /etc/fstab
+    regexp: '^([^#].*?\sswap\s+sw\s+.*)$'
+    replace: '# \1'
+    
+- name: Set authorized key for user {{ user }} copying it from current user
+  ansible.posix.authorized_key:
+    user: "{{ user }}"
+    state: present
+    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
