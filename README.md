@@ -26,7 +26,7 @@ Neste projeto estão sendo utilizados as seguintes stacks:
 │   │   └── wp-ports
 │   └── vars
 │       ├── main.yml
-│       └── tf_ansible_vars_file.yml # Variaveis geradas pelo ansible
+│       └── tf_ansible_vars_file.yml # Variaveis geradas pelo terraform
 ├── README.md
 ├── terraform # Arquivos do terraform pra deploy da ec2, rds, networks, security groups etc
 │   ├── data.tf
@@ -50,11 +50,12 @@ Neste projeto estão sendo utilizados as seguintes stacks:
 ```
 
 ## Installation
-Você vai precisar do **ansible**, **terraform** e o **aws cli**  instalados e configurados na machina que irá executar o deploy.
-- 1 º - Editar o arquivo "variables.tf" na pasta terraform e mudar a senha do banco da variavel "password"
+Você vai precisar do **ansible**, **terraform** e o **aws cli**  instalados e configurados na machina que irá executar o deploy, ou então configurados as variaveis de ambiente da aws.
+- 1 º - Editar o arquivo "variables.tf" na pasta terraform e mude a senha do banco da variavel "password"
 - 2 º - Executar o terraform init e terraform apply e aguardo o provisionamento do ambiente.
 - 3 º - O terraform gerará o arquivo de hosts e variaveis com o output automaticamente, então execute o playbook com o seguinte comando.
 ```bash
+cd ansible
 ansible-playbook -i hosts main.yml -vvv
 ```
 
@@ -66,7 +67,7 @@ ansible-playbook -i hosts main.yml -vvv
   - [x] network/subnets/gateways 
   - [x] security groups
   - [x] RDS subnet groups
-  - [ ] output do terraform direto para os arquivos do ansible.
+  - [x] output do terraform direto para os arquivos do ansible.
 - [x] Ansible 
   - [x] common packages 
   - [x] docker-install 
