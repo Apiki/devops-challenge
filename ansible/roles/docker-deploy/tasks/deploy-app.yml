@@ -27,14 +27,4 @@
     compose:
     - /tmp/docker/nginx-compose.yml
   become: yes
-  become_user: "{{ user }}"
-
-# - name: Deploy stack | Wordpress
-#   community.docker.docker_stack:
-#     state: present
-#     name: wordpress
-#     compose:
-#     - /tmp/docker/docker-compose.yml
-#   become: yes
-#   become_user: "{{ user }}"
-  
+  become_user: "{{ user }}"  

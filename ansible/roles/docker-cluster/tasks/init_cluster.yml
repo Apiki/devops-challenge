@@ -12,11 +12,6 @@
   when:
     - hostvars[inventory_hostname]['ansible_' + private_interface].ipv4 is defined
 
-# - name: debug | print network interface
-#   debug:
-#     # msg: Interface {{ private_interface | default("not") }} found
-#     msg: "MASTER NODE IP: {{ master_node_ip }} | type"
-
 - name: Init a new swarm with default parameters
   community.docker.docker_swarm:
     state: present
@@ -28,9 +23,3 @@
     name: "MASTER_NODE"
     ip_addr: "{{ hostvars[inventory_hostname]['ansible_' + private_interface]['ipv4']['address'] }}"
     token: "{{ docker_swarm_state.swarm_facts.JoinTokens.Manager }}"
-
-- name: Debugando varivel
-  debug:
-    msg:
-    - "MASTER NODE IP: {{ hostvars['MASTER_NODE']['ip_addr']}}"
-    - "MASTER NODE TOKEN: {{ hostvars['MASTER_NODE']['token']}}"

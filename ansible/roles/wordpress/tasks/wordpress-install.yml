@@ -12,27 +12,6 @@
     regexp: '(.)+DocumentRoot /var/www/html'
     line: 'DocumentRoot /var/www/wordpress'
 
-######## APACHE NEW CONFIGS INIT ###########################
-
-
-# - name: Update default Apache site
-#   lineinfile:
-#     path: /etc/apache2/sites-enabled/000-default.conf
-#     regexp: "{{item.regexp}}"
-#     line: "{{item.line}}"
-#   with_items:
-#     - {'regexp': "(.)+DocumentRoot /var/www/html", 'line': "'DocumentRoot /var/www/wordpress"}
-#     - {'regexp': "<VirtualHost *:80>", 'line': "<VirtualHost *:8080>"}
-
-# - name: Update Apache Port
-#   lineinfile:
-#     path: /etc/apache2/ports.conf
-#     state: present
-#     regexp: 'Listen 80'
-#     line: 'Listen 0.0.0.0:8080'
-
-######## APACHE NEW CONFIGS END ###########################
-
 - name: Copy sample config file
   command: mv /var/www/wordpress/wp-config-sample.php /var/www/wordpress/wp-config.php
 
