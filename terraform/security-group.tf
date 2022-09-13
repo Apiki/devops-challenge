@@ -49,6 +49,16 @@ resource "aws_security_group" "allow_http_and_ssh" {
     ipv6_cidr_blocks = ["::/0"]
   }
 
+  # RDS SG
+  ingress {
+    description      = "wordpress"
+    from_port        = 8080
+    to_port          = 8080
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"] #Could be limited to only vpc cidr block
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
 
   tags = {
     Name = "allow_tls"
