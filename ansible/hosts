@@ -1,9 +1,0 @@
-[all:vars]
-ansible_user='ubuntu'
-ansible_become=yes
-ansible_ssh_private_key_file=~/.ssh/madra.pem
-host_key_checking=False
-ansible_ssh_extra_args = '-o StrictHostKeyChecking=no'
-ansible_python_interpreter=/usr/bin/python3
-
-[aws]
