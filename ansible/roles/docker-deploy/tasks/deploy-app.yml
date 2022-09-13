@@ -1,28 +1,40 @@
-- name: Template a file to docker-compose.
-  ansible.builtin.template:
-    src: docker-compose.yml.j2
-    dest: /tmp/docker-compose.yml
+- name: Create a directory 
+  ansible.builtin.file:
+    path: /tmp/docker
+    state: directory
     owner: "{{ user }}"
     group: "{{ user }}"
-    mode: '0644'
+    mode: '0755'
+
+- name: copy templetes
+  ansible.builtin.template:
+    src: "{{item.name_templete}}"
+    dest: /tmp/docker/{{ item.dest_name }}
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: '0755'
+  become: yes
+  become_user: "{{ user }}"
+  with_items:
+    - { 'name_templete': "nginx-compose.yml.j2", 'dest_name': "nginx-compose.yml"}
+    - { 'name_templete': "nginx.conf.j2", 'dest_name': "nginx.conf"}
+    # - { 'name_templete': "docker-compose.yml.j2", 'dest_name': "docker-compose.yml"}
+
+- name: Deploy stack | NGINX
+  community.docker.docker_stack:
+    state: present
+    name: nginx
+    compose:
+    - /tmp/docker/nginx-compose.yml
   become: yes
   become_user: "{{ user }}"
 
-
-- name: Deploy stack | Wordpress
-  community.docker.docker_stack:
-    state: present
-    name: wordpress
-    compose:
-    - /tmp/docker-compose.yml
-  # become: yes
-  become_user: "{{ user }}"
-  
-# - name: Deploy stack | NGINX
+# - name: Deploy stack | Wordpress
 #   community.docker.docker_stack:
 #     state: present
 #     name: wordpress
 #     compose:
-#     - /tmp/docker-compose.yml
-#   # become: yes
+#     - /tmp/docker/docker-compose.yml
+#   become: yes
 #   become_user: "{{ user }}"
+  

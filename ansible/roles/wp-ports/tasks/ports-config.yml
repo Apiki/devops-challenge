@@ -1,0 +1,41 @@
+- name: Aguardando Configuração do Wordpress
+  pause:
+    minutes: 3
+
+- name: apache2 listen on port 8080
+  lineinfile: 
+    dest: /etc/apache2/ports.conf 
+    regexp: "^Listen 80" 
+    line: "Listen 0.0.0.0:8080" 
+    state: present
+  notify:
+    - restart apache2
+
+- name: apache2 virtualhost on port 8080
+  lineinfile: 
+    dest: /etc/apache2/sites-available/000-default.conf 
+    regexp: "^<VirtualHost \\*:80>" 
+    line: "<VirtualHost *:8080>" 
+    state: present
+  notify:
+    - restart apache2
+
+- name: Add a line to a file if the file does not exist, without passing regexp
+  ansible.builtin.lineinfile:
+    path: /var/www/wordpress/wp-config.php
+    line: "{{item}}"
+  with_items:
+    - define( 'WPSITEURL', 'http://{{ hostvars['MASTER_NODE']['ip_addr']}}:8080/' );
+    - define( 'WPHOME', 'http://{{ hostvars['MASTER_NODE']['ip_addr']}}:8080/' );
+    # - define( 'WPSITEURL', 'http://127.0.0.1/' );
+    # - define( 'WPHOME', 'http://127.0.0.1/' );
+
+- name: Update wordpress db values
+  community.mysql.mysql_query:
+    login_db: "{{ WORDPRESS_DB_NAME }}"
+    login_host: "{{ WORDPRESS_DB_HOST }}"
+    login_password: "{{ WORDPRESS_DB_PASSWORD }}"
+    login_user: "{{ WORDPRESS_DB_USER }}"
+    query: UPDATE wp_options SET option_value = replace(option_value, 'http://{{ hostvars['MASTER_NODE']['ip_addr']}}','http://{{ hostvars['MASTER_NODE']['ip_addr']}}:8080') WHERE option_name = 'home' OR option_name = 'siteurl';
+    # query: UPDATE wp_options SET option_value = replace(option_value, 'http://{{ hostvars['MASTER_NODE']['ip_addr']}}','http://127.0.0.1') WHERE option_name = 'home' OR option_name = 'siteurl';
+  ignore_errors: yes
