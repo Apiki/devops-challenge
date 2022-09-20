@@ -23,7 +23,7 @@ Além das ações integradas no cloud-init também é possível passar comandos 
 - hHbilitar e iniciar o serviço docker no systemd
 - Rodar deploy docker-compose
 - Importar os dados do let's encrypt, que inclui os scripts de renovação e os arquivos de certificado
-- Reiniciar o serviço do nginx para que as configuraç
+- Reiniciar o serviço do nginx para que as configurações entrassem em vigor
 
 
 
