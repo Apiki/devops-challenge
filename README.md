@@ -5,7 +5,7 @@ O userdata pode ser passada manualmente durante a criação da instãncia via da
 O userdata utilizado está no arquivo `userdata.cfg`.
 Foi configurado wordpress em container docker, usando o compose. Estando em um container servidor web apache, wordpress, php e outras depêndencias; utilizei imagem oficial do wordpress.
 Também foi instânciado banco de dados mysql em docker, no mesmo compose.
-E por fim nginx instalado diretamente no sistema operacional e funcionando como proxy reverso, estando com as configurações de headers, ssl e websockets realizadas.
+E por fim, nginx instalado diretamente no sistema operacional e funcionando como proxy reverso, estando com as configurações de headers, ssl e websockets realizadas.
 Foi utilizado um certificado *let's encrypt*, gerado previamente, para o domínio `apiki.loscaranlu.com.br`, a criação do certificado e a configuração de ssl no servidor web poderiam ser realizadas no boot integrando o certbot com provedores de dns como cloudfare e route53, também poderia ser feita através de um run padrão do certbot caso fosse previamente feito o apontamento de dns.
 
 
@@ -20,7 +20,7 @@ São comandadas as seguintes ações:
 - Definição de hostname
 - Criação de arquivos: docker-compose e de site no nginx
 Além das ações integradas no cloud-init também é possível passar comandos a serem executados, método usado para as demais ações:
-- hHbilitar e iniciar o serviço docker no systemd
+- Habilitar e iniciar o serviço docker no systemd
 - Rodar deploy docker-compose
 - Importar os dados do let's encrypt, que inclui os scripts de renovação e os arquivos de certificado
 - Reiniciar o serviço do nginx para que as configurações entrassem em vigor
