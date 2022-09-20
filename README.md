@@ -25,6 +25,7 @@ Além das ações integradas no cloud-init também é possível passar comandos 
 - Importar os dados do let's encrypt, que inclui os scripts de renovação e os arquivos de certificado
 - Reiniciar o serviço do nginx para que as configurações entrassem em vigor
 
-
-
+## Uso
+Copiar o conteúdo do arquivo `userdata.cfg` e passa-lo como userdata na criação da instância.
+O arquivo foi feito tendo em mente Debian 11, pode haver problemas de compatibilade com outras distribuições devido a nomes de pacotes e de unidades de serviço, e também devido diferente estrutura de diretórios, presença de firewall e selinux.
 
