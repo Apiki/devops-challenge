@@ -22,6 +22,17 @@ echo \
 sudo apt-get update -y && sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y &&
 
 sudo wget https://github.com/viniciussgoncalves/devops-challenge/raw/vinicius-goncalves/docker-compose.yaml &&
-sudo wget https://github.com/viniciussgoncalves/devops-challenge/raw/vinicius-goncalves/nginx.conf
+sudo wget https://github.com/viniciussgoncalves/devops-challenge/raw/vinicius-goncalves/nginx.conf &&
+
+echo '# wordpress
+WORDPRESS_DB_HOST: db
+WORDPRESS_DB_USER: apiki-user
+WORDPRESS_DB_PASSWORD: apiki-pass
+WORDPRESS_DB_NAME: db-wordpress-apiki
+
+#db
+MYSQL_DATABASE: db-wordpress-apiki
+MYSQL_USER: apiki-user
+MYSQL_PASSWORD: apiki-pass' > .env &&
 
 sudo docker compose up -d
