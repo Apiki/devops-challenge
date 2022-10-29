@@ -8,7 +8,7 @@ services:
   proxy:
     image: nginx
     container_name: apiki_challenge_proxy
-    restart: unless_stopped
+    restart: unless-stopped
     ports:
       - 80:80
     volumes:
@@ -35,7 +35,7 @@ services:
   db:
     image: mysql:5.7
     container_name: apiki_challenge_db
-    restart: unless_stopped
+    restart: unless-stopped
     environment:
       MYSQL_DATABASE: exampledb
       MYSQL_USER: exampleuser
