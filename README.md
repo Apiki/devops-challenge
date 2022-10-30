@@ -37,15 +37,3 @@ Objetivo é criar um processo automatizado para construção de um servidor web 
 ![N|Solid](https://i.ibb.co/bgjXynZ/devops-challenge-diagram-drawio.png)
 
 ---
-
-### Se liga!
-
-Você também pode usar como **Diferencial**:
-
-- [Docker Compose](https://docs.docker.com/compose/).
-- [Kubernetes](https://kubernetes.io/).
-- [Ansible](https://www.ansible.com/).
-- [RDS AWS](https://aws.amazon.com/pt/rds/).
-- Outras tecnologias para somar no projeto.
-
----
