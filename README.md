@@ -15,7 +15,10 @@ Objetivo é criar um processo automatizado para construção de um servidor web 
   - $ sudo wget https://github.com/viniciussgoncalves/devops-challenge/raw/vinicius-goncalves/shell_script_linux.sh && sudo bash shell_script_linux.sh
 - Aguardar até que a mensagem **"Instalação Finalizada!"** seja apresentada.
 
-**Obs:** Dependendo do ambiente, será solicitado a senha de permissão para execução do script.
+**Obs:**
+
+- Dependendo do ambiente, será solicitado a senha de permissão para execução do Script.
+- O Script faz a acriação da senha do usuário root, uma vez que a mesma não é predefinida na distribuição ubuntu.
 
 ### Acessando o WordPress!
 
@@ -25,7 +28,13 @@ Objetivo é criar um processo automatizado para construção de um servidor web 
 
 ### Arquitetura do Projeto!
 
-[![N|Solid](https://i.ibb.co/TcTCqjd/devops-challenge-diagram-drawio.png)
+**Foi utilizado:**
+
+- [Docker Compose](https://docs.docker.com/compose/).
+- Todos os serviços estão em containers.
+- Shell Script Linux.
+
+![N|Solid](https://i.ibb.co/hRjrrcD/devops-challenge-diagram-drawio.png)
 
 ---
 
