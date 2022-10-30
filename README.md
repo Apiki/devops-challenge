@@ -2,8 +2,6 @@
 
 Objetivo é criar um processo automatizado para construção de um servidor web para [WordPress](https://wordpress.org/) em sua última versão.
 
-Para a implementação o colaborador deve seguir os seguintes **Passos**;
-
 ### Criando instância!
 
 - Criar uma instância EC2 na AWS com as seguintes características:
@@ -14,8 +12,8 @@ Para a implementação o colaborador deve seguir os seguintes **Passos**;
 ### Executando Script de instalação!
 
 - Após estar conectado, execute o seguinte script para instalação:
-  - $sudo wget https://github.com/viniciussgoncalves/devops-challenge/raw/vinicius-goncalves/shell_script_linux.sh && sudo bash shell_script_linux.sh
-- Aguardar até que a mensagem **"Instalação Finalizada!"** apareça.
+  - $ sudo wget https://github.com/viniciussgoncalves/devops-challenge/raw/vinicius-goncalves/shell_script_linux.sh && sudo bash shell_script_linux.sh
+- Aguardar até que a mensagem **"Instalação Finalizada!"** seja apresentada.
 
 **Obs:** Dependendo do ambiente, será solicitado a senha de permissão para execução do script.
 
@@ -25,9 +23,9 @@ Para a implementação o colaborador deve seguir os seguintes **Passos**;
   - Abra o navegador de sua preferência e acesse a URL:
   - http://ip-servidor/wp-admin/
 
-**Modelo conceitual**
+### Arquitetura do Projeto!
 
-[![N|Solid](https://apiki.com/wp-content/uploads/2019/05/Screenshot_20190515_174205.png)](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
+[![N|Solid](https://i.ibb.co/TcTCqjd/devops-challenge-diagram-drawio.png)
 
 ---
 
