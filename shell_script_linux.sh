@@ -27,7 +27,7 @@ sudo apt-get update -y && sudo apt-get install docker-ce docker-ce-cli container
 sudo wget https://github.com/viniciussgoncalves/devops-challenge/raw/vinicius-goncalves/docker-compose.yaml &&
 sudo wget https://github.com/viniciussgoncalves/devops-challenge/raw/vinicius-goncalves/nginx.conf &&
 
-# CRIANDO E POPULANDO .ENV
+# CRIANDO E POPULANDO .ENV (em produção .env ficaria em um repositório privado e não seria populado pelo script)
 echo '# wordpress
 WORDPRESS_DB_HOST: db
 WORDPRESS_DB_USER: apiki-user
@@ -40,7 +40,7 @@ MYSQL_USER: apiki-user
 MYSQL_PASSWORD: apiki-pass' > .env &&
 
 # SUBINDO SERVIÇOS
-sudo docker compose up -d
+sudo docker compose up -d &&
 
 # FIM
 echo "Instalação Finalizada!"
