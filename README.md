@@ -34,6 +34,6 @@ Objetivo é criar um processo automatizado para construção de um servidor web 
 - Todos os serviços estão em containers.
 - Shell Script Linux.
 
-![N|Solid](https://i.ibb.co/bgjXynZ/devops-challenge-diagram-drawio.png)
+![N|Solid](https://i.ibb.co/hRjrrcD/devops-challenge-diagram-drawio.png)
 
 ---
