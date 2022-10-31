@@ -12,7 +12,7 @@
 sudo sh -c 'echo root:apiki | chpasswd'
 
 # ATUALIZAÇOES
-sudo apt-get update -y && sudo apt-get update -y &&
+sudo apt-get update -y &&
 
 # INSTALANDO DOCKER ENGINE
 sudo apt-get install ca-certificates curl gnupg lsb-release -y &&
