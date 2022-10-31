@@ -17,7 +17,7 @@ Objetivo é criar um processo automatizado para construção de um servidor web 
 
 **Obs:**
 
-- Dependendo do ambiente, será solicitado a senha de permissão para execução do Script.
+- Dependendo do ambiente será solicitado a senha de permissão para execução do script.
 - O Script faz a acriação de uma senha (apiki) para o usuário root, uma vez que a mesma não é predefinida em uma distribuição Ubuntu.
 
 ### Acessando o WordPress!
