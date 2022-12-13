@@ -9,7 +9,7 @@ O candidato deve seguir os seguintes **Requisitos**;
   - Uso de Shell Script **Linux**.
   - [Docker](https://www.docker.com/) 
 
-### Arquitertura!
+### Arquitetura!
 
   - [Nginx](https://www.nginx.com/) configurado como proxy para o Apache.
   - [Apache](https://www.apache.org/) servidor para o WordPress.
@@ -41,7 +41,7 @@ Você também pode usar como **Diferencial**:
 2. Após finalizar o desafio, crie um Pull Request.
 3. Aguarde algum contribuidor realizar o code review.
 4. Deverá conter a documentação para instalação e configuração README.md.
-5. Enviar para o email wphost@apiki.com os dados de acesso SSH com permissão root, da máquina configurada na AWS.
+5. Enviar para o email wphost@apiki.com e **colocar em cópia o email mecontrata@apiki.com** com os dados de acesso SSH com permissão root, da máquina configurada na AWS.
 
 ---
 
