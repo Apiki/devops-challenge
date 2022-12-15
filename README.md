@@ -14,14 +14,14 @@ No arquivo main.tf é necessário alterar a key name conforme foi criada no Key 
 Na linha 31 do main.tf deve ser alterado o local do arquivo onde esta salvo o Key pair;<br>
 O Terraform, juntamente com o Docker Compose e Shell Script irá realizar todas as instalações e configurações necessárias para rodar o nginx, apache e WordPress.
 
-# Iniciando o Terraforme.
+# Iniciando o Terraform.
 1º Para iniciar o deploy do Terraform execute o seguinte comando "terraform -chdir='local_da_pasta_projeto' init";<br>
 2º Para o Terraform criar a instância digite em seu terminal "terraform -chdir='local_da_pasta' apply";<br>
 3º Após ele finalizar ele retornará os endereços DNS do RDS e da instância criada.<br>
 
 # Acessando o WordPress.
 Copie a endereço que retornou no final da criação da instância e acesse em seu browser, ele irá direcionar diretamente para o configurador do WordPress;
-- Nesse caso o link é: http://dns-do-servidor/ <br>
+- Nesse caso o link é: http://ec2-44-202-71-47.compute-1.amazonaws.com <br>
 As configurações do DB criado podem ser encontradas no arquivo main.tf;<br>
 <br>Nesse caso os dados de acesso são:
     * db_name  = wordpress
