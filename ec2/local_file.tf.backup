@@ -1,0 +1,4 @@
+resource "local_file" "WORDPRESS_DB_HOST" {
+  content  = aws_db_instance.wordpress_apiki.endpoint
+  filename = "database.env"
+}

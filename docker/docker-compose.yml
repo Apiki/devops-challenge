@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  proxy:
+    image: nginx
+    container_name: apiki_proxy
+    restart: unless-stopped
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - wordpress
+
+  wordpress:
+    image: wordpress:latest
+    container_name: apiki_wordpress
+#     restart: always
+    ports:
+      - 8080:80
+#    environment:
+#      WORDPRESS_DB_HOST: "${WORDPRESS_DB_HOST}"
+#      WORDPRESS_DB_USER: "${WORDPRESS_DB_USER}"
+#      WORDPRESS_DB_NAME: "${WORDPRESS_DB_NAME}"
+#      WORDPRESS_DB_PASSWORD: "${WORDPRESS_DB_PASSWORD}"
+    env_file:
+      - variables.env
+    volumes:
+      - wordpress:/var/www/html
+
+volumes:
+  wordpress:
+  proxy:
