@@ -1,0 +1,17 @@
+{
+    "name": "matheus/desafio-apiki",
+    "autoload": {
+        "psr-4": {
+            "Matheus\\DesafioApiki\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "matheus da silva",
+            "email": "matheus.bnb186@gmail.com"
+        }
+    ],
+    "require": {
+        "roots/wordpress": "^5.8"
+    }
+}
