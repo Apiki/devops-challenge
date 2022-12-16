@@ -50,3 +50,5 @@ Você também pode usar como **Diferencial**:
 * Será executado os precessos de instalação e configuração de acordo com a orientação da documentação em um servidor interno da Apiki.
 * Será avaliado o processo de automação para criação do ambiente em cloud, tempo de execução e a configuração no server na AWS com os dados fornecidos pelo candidato.
 * Deverar constar pelo menos 2 containers.
+
+A Aplicação tem com intuito constar 3 containers.
