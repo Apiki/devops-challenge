@@ -1,0 +1,153 @@
+- name: Install Docker
+  shell: curl -fsSL https://get.docker.com | bash
+  tags: [ docker ]
+
+
+- name: Install Docker Compose
+  shell: curl -L "https://github.com/docker/compose/releases/download/"{{version_docker_compose}}"/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose 
+  tags: [ docker ]
+
+- name: Applying execution permission "/usr/local/bin/docker-compose"
+  file: dest=/usr/local/bin/docker-compose mode=a+x
+  tags: [ docker ]
+
+- name: Linking the user to run Docker Compose
+  file: 
+    src: /usr/local/bin/docker-compose 
+    dest: /usr/bin/docker-compose
+    state: link 
+    force: yes
+  tags: [ docker ]
+
+
+- name: Create directory Dockerfiles
+  file:
+    path: /root/infra-design/nginx/conf/
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: 0755
+
+- name: Create directory Dockerfiles
+  file:
+    path: /root/infra-design/nginx/certs/cert
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: 0755
+
+
+- name: Create directory WordPress
+  file:
+    path: /var/www/{{domain}}
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: 0755
+
+- name: Download latest wordpress
+  get_url: url=https://wordpress.org/latest.tar.gz dest=/tmp/wp.tar.gz validate_certs=no
+  tags: [ wordpress ]
+
+- name: Extract WordPress
+  unarchive:
+    src: /tmp/wp.tar.gz
+    dest: /var/www/{{domain}}
+    copy: no
+
+- name: Change name directory WordPress
+  command: cp -r /var/www/{{domain}}/wordpress /var/www/{{domain}}/htdocs
+
+- name: Fixer permissions in directory
+  file:
+    path: /var/www/{{domain}}
+    state: directory
+    owner: www-data
+    group: www-data
+    recurse: yes
+    mode: 0755
+
+- name: Setting permissions in Directory
+  shell: "/usr/bin/find /var/www/{{domain}} -type d ! -perm 755 -exec chmod 755 {} \\;"
+
+- name: Setting permissions in archives
+  shell: "/usr/bin/find /var/www/{{domain}} -type f ! -perm 644 -exec chmod 644 {} \\;"
+
+- name: Enabled site in Nginx
+  template:
+    src: "files/default.conf.j2"
+    dest: /root/infra-design/nginx/conf/{{domain}}.conf
+
+- name: Copy Cert in Nginx
+  template:
+    src: "files/cert/site.crt"
+    dest: /root/infra-design/nginx/certs/cert/site.crt
+
+- name: Copy Cert in Nginx
+  template:
+    src: "files/cert/site.key"
+    dest: /root/infra-design/nginx/certs/cert/site.key
+
+- name: Copy template Docker Compose
+  template:
+    src: "files/docker-compose.yml.j2"
+    dest: /root/infra-design/docker-compose.yml
+
+- name: Run container
+  become: True
+  shell:
+    cmd: "docker-compose down && docker-compose up -d"
+    chdir: /root/infra-design
+  register: shell_result
+  tags: [ docker ]
+
+- name: Install required dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - python
+    - python-setuptools
+    - python-dev
+    - build-essential
+  tags: [ python ]
+
+- name: Create database for WordPress
+  mysql_db:
+    name: "{{ mysql_database }}"
+    state: present
+    encoding: utf8
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    login_host: "{{ mysql_host }}"
+  tags: [ mysql ]
+
+- name: Create MySQL user for WordPress
+  mysql_user:
+    name: "{{ mysql_user }}"
+    host: '%'
+    password: "{{ mysql_password }}"
+    priv: "{{ mysql_database }}.*:ALL"
+    state: present
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    login_host: "{{ mysql_host }}"
+  tags: [ mysql ]
+
+- name: Config wp-config
+  template:
+    src: "files/wp-config.php.j2"
+    dest: /var/www/{{domain}}/wp-config.php
+  tags: [ wordpress ]
+
+- name: Adjusting wp-config permissions
+  file:
+    path: /var/www/{{domain}}/wp-config.php
+    owner: www-data
+    group: www-data
+    mode: '0644'
+  tags: [ wordpress ]
+
+- name: Done!!!
+  debug:
+    msg: "http://{{domain}}"

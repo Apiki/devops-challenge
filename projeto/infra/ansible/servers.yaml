@@ -1,0 +1,36 @@
+---
+# YAML documents begin with the document separator ---
+
+# The minus in YAML this indicates a list item.  The playbook contains a list
+# of plays, with each play being a dictionary
+# -
+# # Target: where our play will run and options it will run with
+#   hosts:
+#     - all
+#   become: yes
+- hosts: all
+  become: yes
+  become_user: root
+  become_method: sudo
+  gather_facts: no
+  vars:
+    user: "{{ansible_user}}"
+    mysql_root_password: 0MbVOLq9baRg
+    mysql_user: wordpress_usr
+    mysql_password: P!etmMZ!DH0t
+    mysql_host: 171.28.5.11
+    mysql_database: wordpress_db
+    version_docker_compose: 1.29.2
+    
+  pre_tasks:
+    - name: 'Atualizando Repositório'
+      raw: 'apt -y update'
+    - name: 'Instalando dependências'
+      raw: 'apt -y install python python3-pymysql git rsync curl wget'
+
+# Variables that will be used for all the roles
+  roles:
+    - { role: install-wp-debian, tags: ["install_wp_debian"] }
+
+  
+  
