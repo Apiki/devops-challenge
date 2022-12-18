@@ -1,52 +1,36 @@
 # Desafio DevOps Apiki.
 
-Objetivo é criar um processo automatizado para construção de um servidor web para [WordPress](https://wordpress.org/) em sua última versão.
+Objetivo é criar um processo automatizado para construção de um servidor web para WordPress em sua última versão.
 
-O candidato deve seguir os seguintes **Requisitos**;
+## 🚀 Começando
 
-  - O projeto dever ser configurado na [AWS](https://aws.amazon.com/free/), crie uma conta Free.
-  - A máquina configurada deverar ter às portas 80, 443 e 22 abertas.
-  - Uso de Shell Script **Linux**.
-  - [Docker](https://www.docker.com/) 
+Foi criado um processo automatizado para provisionar pelo terraform um ambiente na AWS de alta disponibilidade utilizando ECS.
 
-### Arquitetura!
+A arquitetura escolhida ECS - ASG - ALB - VPC - RDS - ROUTE53
 
-  - [Nginx](https://www.nginx.com/) configurado como proxy para o Apache.
-  - [Apache](https://www.apache.org/) servidor para o WordPress.
-  - [PHP](https://php.net/) a última versão.
-  - [MySql](https://www.mysql.com/) Versão mínima requirida 5.7.
-  - [WordPress](https://wordpress.org) última versão configurada no servidor Apache.
-  
-  **Modelo conceitual**
+As variavéis de ambiente do banco de dados foram armazenadas no AWS Parameter Store incluindo a senha, para casos de ambientes produtivos é recomendável armazenar a senha no Secrets
 
-[![N|Solid](https://apiki.com/wp-content/uploads/2019/05/Screenshot_20190515_174205.png)](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
+A URL https://wp.mecontrata.cloud estará disponível com o WordPress logo após o deploy da pipeline
 
----
+### 📋 Pré-requisitos
 
-### Se liga!
+Necessário adicionar as secrets no repositório do Github para realizar o deploy do pipeline (por segurança as chaves serão enviadas por e-mail)
 
-Você também pode usar como **Diferencial**:
-  
-  - [Docker Compose](https://docs.docker.com/compose/).
-  - [Kubernetes](https://kubernetes.io/).
-  - [Ansible](https://www.ansible.com/).
-  - [RDS AWS](https://aws.amazon.com/pt/rds/).
-  - Outras tecnologias para somar no projeto.  
+```
+AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY 
+```
+## 🔧 Instalação
 
----
+Uma vez configurado os secrets conforme informado nos Pré-requesitos, é necessário executar o o pipeline terraform-deploy para provisionar todo o ambiente dentro da AWS
 
-### Entrega
+## ⚙️ Executando os testes
 
-1. Efetue o fork deste repositório e crie um branch com o seu nome e sobrenome. (exemplo: fulano-dasilva)
-2. Após finalizar o desafio, crie um Pull Request.
-3. Aguarde algum contribuidor realizar o code review.
-4. Deverá conter a documentação para instalação e configuração README.md.
-5. Enviar para o email wphost@apiki.com e **colocar em cópia o email mecontrata@apiki.com** com os dados de acesso SSH com permissão root, da máquina configurada na AWS.
+Após a conclusão do pipeline, a aplicação estará disponível pela URL https://wp.mecontrata.cloud ou pela URL do ALB que estará disponível no Terraform Output do deploy da pipeline
 
----
+## 🔩 Finalização
 
-### Validação
+Após realizar os testes necessários, basta rodar o pipeline terraform-destroy para que todo o ambiente possa ser removido. O acesso a console SSH não foi disponibilizado pois o ambiente está rodando no ECS (EC2) e todo o material de configuração se encontra nos arquivos de Terraform
 
-* Será executado os precessos de instalação e configuração de acordo com a orientação da documentação em um servidor interno da Apiki.
-* Será avaliado o processo de automação para criação do ambiente em cloud, tempo de execução e a configuração no server na AWS com os dados fornecidos pelo candidato.
-* Deverar constar pelo menos 2 containers.
+## ✒️ Autor
+
+Diego Ramos

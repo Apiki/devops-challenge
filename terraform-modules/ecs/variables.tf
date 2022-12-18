@@ -1,0 +1,12 @@
+variable "region" {}
+variable "environment" {}
+variable "vpc_id" {}
+variable "subnets" {}
+variable "subnet_ids" {}
+variable "instance_type" {}
+variable "clustername" {}
+variable "desired_ecs" {}
+variable "min_ecs" {}
+variable "max_ecs" {}
+variable "zone_domain" {}
+variable "zone_id" {}

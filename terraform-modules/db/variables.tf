@@ -1,0 +1,11 @@
+variable "region" {}
+variable "environment" {}
+variable "database_name" {}
+variable "master_username" {}
+variable "cluster_identifier" {}
+variable "engine" {}
+variable "engine_version" {}
+variable "engine_mode" {}
+variable "subnet_ids" {}
+variable "vpc_id" {}
+variable "cidr_block" {}
