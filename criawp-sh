@@ -6,7 +6,7 @@ banco=`TZ='America/Sao_Paulo' date +"%Y%m%d"`_$1
 
 #criar o arquivo de configuração do nginx
 
-echo 'server {
+echo "server {
 
 	listen 80;
 
@@ -14,13 +14,13 @@ echo 'server {
 
 		proxy_pass         http://127.0.0.1:801;
 		proxy_redirect     off;
-		proxy_set_header   Host $host;
-		proxy_set_header   X-Real-IP $remote_addr;
-		proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-		proxy_set_header   X-Forwarded-Host $server_name;
+		proxy_set_header   Host \$host;
+		proxy_set_header   X-Real-IP \$remote_addr;
+		proxy_set_header   X-Forwarded-For \$proxy_add_x_forwarded_for;
+		proxy_set_header   X-Forwarded-Host \$server_name;
 
 	}
-}' > nginx/default.conf
+}" > nginx/default.conf
 
 
 #Criar a docker com o nginx expondo a porta 80 e mapeando a pasta etc fora da docker na pasta atual
@@ -58,7 +58,7 @@ echo "server {
         server_name _;
 
         location / {
-                try_files $uri $uri/ =404;
+                try_files \$uri \$uri/ =404;
         }
 
         location ~ \.php$ {
@@ -82,7 +82,6 @@ cd /var/www/html
 wp core download --path=/var/www/html --locale=pt_BR --allow-root
 wp config create --dbname=$banco --dbuser=hqmoraes --dbpass=ApikiMeContrata --dbhost=db-apiki.cwaw1inzljwb.us-east-1.rds.amazonaws.com --allow-root
 wp db create --allow-root
-wp core install --url=52.201.236.131 --title=\"Apiki me contrata\" --admin_user=hqmoraes --admin_password=ApikiMeContrata --admin_email=hq@hospedar.net --allow-root
-" > nginx/wp.sh
+wp core install --url=52.201.236.131 --title=\"Apiki me contrata\" --admin_user=hqmoraes --admin_password=ApikiMeContrata --admin_email=hq@hospedar.net --allow-root " > nginx/wp.sh
 docker exec nginx chmod u+x /opt/nginx/wp.sh
 docker exec nginx /bin/bash /opt/nginx/wp.sh
