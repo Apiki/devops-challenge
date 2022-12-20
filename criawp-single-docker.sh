@@ -2,7 +2,7 @@
 
 #Criar pasta com os arquivos de configuração
 mkdir nginx
-banco=`TZ='America/Sao_Paulo' date +"%Y%m%d"`_$1
+banco=`TZ='America/Sao_Paulo' date +"%Y%m%d%H%M%S"`_$1
 
 #criar o arquivo de configuração do nginx
 
