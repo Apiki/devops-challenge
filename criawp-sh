@@ -2,6 +2,7 @@
 
 #Criar pasta com os arquivos de configuração
 mkdir nginx
+banco=`TZ='America/Sao_Paulo' date +"%Y%m%d"`_$1
 
 #criar o arquivo de configuração do nginx
 
@@ -46,7 +47,7 @@ docker exec nginx /etc/init.d/apache2 restart
 #iniciar o nginx
 
 
-echo 'server {
+echo "server {
         listen 80 default_server;
         listen [::]:80 default_server;
 
@@ -69,19 +70,19 @@ echo 'server {
                 deny all;
         }
 }
-' > nginx/default
+" > nginx/default
 docker exec nginx mv /opt/nginx/default  /etc/nginx/sites-enabled/default -f
 docker exec nginx /etc/init.d/nginx start
 #instalar o wordpress
-echo 'curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+echo "curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 php wp-cli.phar --info
 chmod +x wp-cli.phar
 mv wp-cli.phar /usr/local/bin/wp
 cd /var/www/html
 wp core download --path=/var/www/html --locale=pt_BR --allow-root
-wp config create --dbname=site_apiki --dbuser=hqmoraes --dbpass=ApikiMeContrata --dbhost=db-apiki.cwaw1inzljwb.us-east-1.rds.amazonaws.com --allow-root
+wp config create --dbname=$banco --dbuser=hqmoraes --dbpass=ApikiMeContrata --dbhost=db-apiki.cwaw1inzljwb.us-east-1.rds.amazonaws.com --allow-root
 wp db create --allow-root
-wp core install --url=52.201.236.131 --title="Apiki me contrata" --admin_user=hqmoraes --admin_password=ApikiMeContrata --admin_email=hq@hospedar.net --allow-root
-' > nginx/wp.sh
+wp core install --url=52.201.236.131 --title=\"Apiki me contrata\" --admin_user=hqmoraes --admin_password=ApikiMeContrata --admin_email=hq@hospedar.net --allow-root
+" > nginx/wp.sh
 docker exec nginx chmod u+x /opt/nginx/wp.sh
 docker exec nginx /bin/bash /opt/nginx/wp.sh
