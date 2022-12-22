@@ -1,7 +1,0 @@
-Access Key ID
-AKIA4NZGBZMQQF3BVVN6
-Secret access key
-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
-
-Access Console
-https://854241430305.signin.aws.amazon.com/console
